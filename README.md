@@ -2,7 +2,7 @@
 
 ## Table of Contents
 1. [Project Description](#project-description)  
-2. [Goals](#goals)  
+2. [Goals of the Project](#goals)  
 3. [Data](#data)  
    3.1 [What we collect](#what-we-collect)  
    3.2 [How we collect it](#how-we-collect-it)  
