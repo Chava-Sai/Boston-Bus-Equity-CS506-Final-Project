@@ -25,18 +25,23 @@ This project looks at MBTA bus service performance and equity across Boston. We 
 
 ## Data
 
-1. **Ridership**
-  - [MBTA Bus Ridership by Trip, Season, Route, Line, and Stop](https://mbta-massdot.opendata.arcgis.com/datasets/8daf4a33925a4df59183f860826d29ee/about)
+1. **Ridership**  
+   - [MBTA Bus Ridership by Trip, Season, Route, Line, and Stop](https://mbta-massdot.opendata.arcgis.com/datasets/8daf4a33925a4df59183f860826d29ee/about)  
+     Provides detailed ridership counts broken down by trip, route, stop, and season. Useful for studying demand patterns and identifying high-ridership corridors.  
 
-2. **Reliability**
-  - [MBTA Bus Arrival Departure Times ( 2018–2025 )](https://mbta-massdot.opendata.arcgis.com/search?q=MBTA%20Bus%20Arrival%20Departure%20Times)  
+2. **Reliability**  
+   - [MBTA Bus Arrival Departure Times (2018–2025)](https://mbta-massdot.opendata.arcgis.com/search?q=MBTA%20Bus%20Arrival%20Departure%20Times)  
+     Contains historical arrival and departure records for MBTA buses. Helps measure on-time performance, delays, and schedule adherence over multiple years.  
 
-3. **Interactive tool for our "Rider Census"**
-  - [MBTA 2024 System-Wide Passenger Survey Data)](https://mbta-massdot.opendata.arcgis.com/datasets/7da1f62034f64cb4bc9e2afefe9a1fdc_0/explore)   
+3. **Interactive tool for our "Rider Census"**  
+   - [MBTA 2024 System-Wide Passenger Survey Data](https://mbta-massdot.opendata.arcgis.com/datasets/7da1f62034f64cb4bc9e2afefe9a1fdc_0/explore)  
+     A survey-based dataset capturing passenger demographics (e.g., age, race, income, commute purpose). Enables equity-focused analysis of who uses the system and how.  
 
-4. **(If time permits) Live/derived**
-  - [MBTA V3 API](https://www.mbta.com/developers/v3-api)
-  - [MBTA performance feed](https://www.mbta.com/performance-metrics)
+4. **(If time permits) Live/derived**  
+   - [MBTA V3 API](https://www.mbta.com/developers/v3-api)  
+     Real-time API providing current vehicle positions, trip updates, and predictions. Can be used to monitor live bus performance or build predictive models.  
+   - [MBTA Performance Feed](https://www.mbta.com/performance-metrics)  
+     Aggregated performance metrics published by MBTA, summarizing service quality indicators such as reliability and ridership trends.  
     
 ---
 
