@@ -76,8 +76,6 @@ All raw files live in `data/raw/` (read-only). Cleaning scripts write to `data/c
 - **Comparative bars**: target routes vs. citywide average (with CIs).
 - **Interactive (optional)**: Plotly/Power BI dashboards; t-SNE/UMAP for route clustering.
 
-Each figure has a **caption, data source, and takeaway**. We’ll keep at least **5–7** core visuals to address base questions.
-
 ---
 
 ## Test Plan
@@ -89,22 +87,3 @@ Each figure has a **caption, data source, and takeaway**. We’ll keep at least 
 
 ---
 
-## Reproducibility
-
-### Quickstart (Python / Colab)
-```bash
-# clone
-git clone https://github.com/<your-org>/<your-repo>.git
-cd <your-repo>
-
-# create env
-python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-
-# populate data folders (put dataset links in data/README.md)
-# then run the pipeline
-python -m src.data.make_dataset           # raw -> clean
-python -m src.features.build_features     # clean -> processed
-python -m src.models.run_baselines        # fits + metrics
-python -m src.visualization.make_figures  # saves plots to reports/figures/
