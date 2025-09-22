@@ -16,10 +16,10 @@ This project looks at MBTA bus service performance and equity across Boston. We 
 ---
 
 ## Goals of the Project
-- Measure ridership patterns and travel times across MBTA bus routes.
-- Evaluate wait times, delays, and overall service reliability.
-- Identify disparities in service quality and see how they relate to community characteristics (e.g., race, income, age).
-- Compare pre- and post-pandemic service trends to understand long-term changes.
+1. Measure ridership patterns and travel times across MBTA bus routes.
+2. Evaluate wait times, delays, and overall service reliability.
+3. Identify disparities in service quality and see how they relate to community characteristics (e.g., race, income, age).
+4. Compare pre- and post-pandemic service trends to understand long-term changes.
 
 ---
 
@@ -61,9 +61,9 @@ Our visualizations will focus on making trends easy to understand and compare. W
 
 
 ## Test Plan
-- Train the model on earlier time periods and test on more recent data to evaluate performance over time.
-- Withhold 20% of the routes during training to assess how well the model generalizes to unseen routes.
-- Compare prediction errors (e.g., residuals or MAE) across different demographic groups to ensure results are not biased.
+1. Train the model on earlier time periods and test on more recent data to evaluate performance over time.
+2. Withhold 20% of the routes during training to assess how well the model generalizes to unseen routes.
+3. Compare prediction errors (e.g., residuals or MAE) across different demographic groups to ensure results are not biased.
 
 
 ---
