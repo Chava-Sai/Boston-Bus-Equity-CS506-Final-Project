@@ -40,7 +40,6 @@ This project looks at MBTA bus service performance and equity across Boston. We 
   - MBTA V3 API, MBTA performance feed
   - Weather data (if used for predictive delay models)
 
-> 🔗 Put the exact dataset links from your project PDF into `data/README.md` (see repo structure below).
 
 ### How we collect it
 - **Bulk downloads** from MBTA/MassDOT open data portals (CSV/GeoJSON).
@@ -49,7 +48,6 @@ This project looks at MBTA bus service performance and equity across Boston. We 
   - `src/data/fetch_mbta_api.py` (V3 API if used)
 - **Census/ACS extracts** via pre-downloaded CSVs or API helpers.
 
-All raw files live in `data/raw/` (read-only). Cleaning scripts write to `data/clean/` and analysis-ready tables to `data/processed/`.
 
 ---
 
@@ -60,7 +58,6 @@ All raw files live in `data/raw/` (read-only). Cleaning scripts write to `data/c
 - **Clustering (optional):** group routes by reliability patterns.
 - **Predictive (stretch):** gradient boosting / random forest / XGBoost to predict delay risk; feature importance to surface drivers.
 
-> We’ll document model specs, assumptions, and diagnostics in `reports/final_report.md`.
 
 ---
 
