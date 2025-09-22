@@ -20,8 +20,6 @@
 ## Project Description
 This project looks at MBTA bus service performance and equity across Boston. We use ridership and reliability data to study trends in passenger demand, travel times, wait times, and delays. The analysis also examines whether service differences affect communities differently, considering factors like race, income, and age. By comparing patterns before and after the pandemic and across key bus routes, we aim to highlight both improvements and disparities in service. 
 
-> Stakeholders: BU Spark!, City of Boston Analytics, transit advocacy orgs.
-
 ---
 
 ## Goals of the Project
@@ -29,11 +27,6 @@ This project looks at MBTA bus service performance and equity across Boston. We 
 - Evaluate wait times, delays, and overall service reliability.
 - Identify disparities in service quality and see how they relate to community characteristics (e.g., race, income, age).
 - Compare pre- and post-pandemic service trends to understand long-term changes.
-
-**Example success criteria**
-- 5–7 publication-quality visuals answering base questions.
-- Quantified differences between target routes vs. system average.
-- Equity analysis with clear, testable metrics and limitations.
 
 ---
 
