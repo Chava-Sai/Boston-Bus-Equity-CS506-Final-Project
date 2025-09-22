@@ -3,9 +3,7 @@
 ## Table of Contents
 1. [Project Description](#project-description)  
 2. [Goals of the Project](#goals)  
-3. [Data](#data)  
-   3.1 [What we collect](#what-we-collect)  
-   3.2 [How we collect it](#how-we-collect-it)  
+3. [Data](#data)   
 4. [Modeling Plan](#modeling-plan)  
 5. [Visualization Plan](#visualization-plan)  
 6. [Test Plan](#test-plan)  
@@ -27,28 +25,19 @@ This project looks at MBTA bus service performance and equity across Boston. We 
 
 ## Data
 
-### What we collect
 - **Ridership**
-  - Bus ridership by trip/season/route/stop
-  - System-wide passenger survey (e.g., 2023)
+  - [MBTA Bus Ridership by Trip, Season, Route, Line, and Stop]([https://mbta-massdot.opendata.arcgis.com/](https://mbta-massdot.opendata.arcgis.com/datasets/8daf4a33925a4df59183f860826d29ee/about))   
+
 - **Reliability**
-  - Bus arrival & departure times (historical 2018–2024 where available)
-- **Equity context**
-  - Census/ACS (race, income, age, commute time)
-  - Bus stop coordinates (PATI), route shapes
+  - [MBTA Bus Arrival Departure Times ( 2018–2025 )](https://mbta-massdot.opendata.arcgis.com/search?q=MBTA%20Bus%20Arrival%20Departure%20Times)  
+
+- **Interactive tool for our "Rider Census"**
+  - [MBTA 2024 System-Wide Passenger Survey Data)](https://mbta-massdot.opendata.arcgis.com/datasets/7da1f62034f64cb4bc9e2afefe9a1fdc_0/explore)   
+
 - **(If time permits) Live/derived**
-  - MBTA V3 API, MBTA performance feed
-  - Weather data (if used for predictive delay models)
-
-
-### How we collect it
-- **Bulk downloads** from MBTA/MassDOT open data portals (CSV/GeoJSON).
-- **Programmatic pulls** via small Python fetchers:
-  - `src/data/download_mbta.py` (static datasets)
-  - `src/data/fetch_mbta_api.py` (V3 API if used)
-- **Census/ACS extracts** via pre-downloaded CSVs or API helpers.
-
-
+  - [MBTA V3 API]([https://api-v3.mbta.com/](https://www.mbta.com/developers/v3-api))  
+  - [MBTA performance feed](https://www.mbta.com/performance-metrics)
+    
 ---
 
 ## Modeling Plan
