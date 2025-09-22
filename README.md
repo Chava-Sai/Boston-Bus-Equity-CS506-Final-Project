@@ -25,16 +25,16 @@ This project looks at MBTA bus service performance and equity across Boston. We 
 
 ## Data
 
-- **Ridership**
+1. **Ridership**
   - [MBTA Bus Ridership by Trip, Season, Route, Line, and Stop](https://mbta-massdot.opendata.arcgis.com/datasets/8daf4a33925a4df59183f860826d29ee/about)
 
-- **Reliability**
+2. **Reliability**
   - [MBTA Bus Arrival Departure Times ( 2018–2025 )](https://mbta-massdot.opendata.arcgis.com/search?q=MBTA%20Bus%20Arrival%20Departure%20Times)  
 
-- **Interactive tool for our "Rider Census"**
+3. **Interactive tool for our "Rider Census"**
   - [MBTA 2024 System-Wide Passenger Survey Data)](https://mbta-massdot.opendata.arcgis.com/datasets/7da1f62034f64cb4bc9e2afefe9a1fdc_0/explore)   
 
-- **(If time permits) Live/derived**
+4. **(If time permits) Live/derived**
   - [MBTA V3 API](https://www.mbta.com/developers/v3-api)
   - [MBTA performance feed](https://www.mbta.com/performance-metrics)
     
