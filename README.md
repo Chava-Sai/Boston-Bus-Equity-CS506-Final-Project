@@ -1,7 +1,7 @@
 # Boston-Bus-Equity-CS506-Final-Project
 
 
-[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)]()
+%[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)]()
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)]()
 [![Made with ❤️ for BU Spark!](https://img.shields.io/badge/BU%20Spark!-Project-red.svg)]()
 
