@@ -52,7 +52,7 @@ We will begin with exploratory data analysis to identify key trends and relation
 
 ------
 
-## Visualization the Data
+## Data Visualization 
 Our visualizations will focus on making trends easy to understand and compare. We plan to use route maps to show delays across neighborhoods, scatter plots to highlight relationships between service performance and community factors, and time-series charts to track ridership changes before and after the pandemic. Interactive dashboards may also be developed to allow users to explore bus route performance and equity patterns directly.
 
 
