@@ -61,11 +61,10 @@ Our visualizations will focus on making trends easy to understand and compare. W
 
 
 ## Test Plan
-- **Temporal holdout:** train on 2018–2022, validate on 2023–2024.
-- **Route holdout (robustness):** withhold 20% of routes when fitting predictive models; report generalization.
-- **Cross-validation:** k-fold where applicable.
-- **Fairness checks:** compare residuals/MAE across demographic strata to ensure conclusions aren’t artifacts of sampling/coverage.
-- **Sensitivity analyses:** alternative definitions of “on-time” (e.g., ±1, ±3, ±5 min), alternate aggregation levels (stop vs. route).
+-Train the model on earlier time periods and test on more recent data to evaluate performance over time.
+-Withhold 20% of the routes during training to assess how well the model generalizes to unseen routes.
+-Compare prediction errors (e.g., residuals or MAE) across different demographic groups to ensure results are not biased.
+
 
 ---
 
