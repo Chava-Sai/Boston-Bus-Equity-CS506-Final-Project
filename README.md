@@ -36,7 +36,7 @@ This project looks at MBTA bus service performance and equity across Boston. We 
 - **Equity context**
   - Census/ACS (race, income, age, commute time)
   - Bus stop coordinates (PATI), route shapes
-- **(Optional) Live/derived**
+- **(If time permits) Live/derived**
   - MBTA V3 API, MBTA performance feed
   - Weather data (if used for predictive delay models)
 
