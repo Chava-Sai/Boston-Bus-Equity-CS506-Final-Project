@@ -52,22 +52,13 @@ This project looks at MBTA bus service performance and equity across Boston. We 
 ---
 
 ## Modeling Plan
-- **Descriptive + Time Series:** trends in ridership, headways, delays (per route, per season).
-- **Geospatial joins:** routes/stops ↔ census tracts to compute equity metrics.
-- **Regression (baseline):** linear/Poisson/negative binomial models for delay/ridership vs. features (route, time-of-day, headway, neighborhood indicators).
-- **Clustering (optional):** group routes by reliability patterns.
-- **Predictive (stretch):** gradient boosting / random forest / XGBoost to predict delay risk; feature importance to surface drivers.
+We will begin with exploratory data analysis to identify key trends and relationships. Potential approaches include clustering to group routes with similar ridership or delay patterns, linear or regression models to study how service performance relates to demographic factors, and tree-based methods such as decision trees or XGBoost for predicting delays or reliability. As we gain more experience in class, the modeling approach will be refined to best match the data.
 
 
 ---
 
 ## Visualization Plan
-- **Time series**: pre- vs post-pandemic trends by route/line.
-- **Heatmaps**: avg delay or on-time % by route × time-of-day.
-- **Maps**: choropleths of service metrics overlaid with demographics; stop-level markers for extremes.
-- **Comparative bars**: target routes vs. citywide average (with CIs).
-- **Interactive (optional)**: Plotly/Power BI dashboards; t-SNE/UMAP for route clustering.
-
+Our visualizations will focus on making trends easy to understand and compare. We plan to use route maps to show delays across neighborhoods, scatter plots to highlight relationships between service performance and community factors, and time-series charts to track ridership changes before and after the pandemic. Interactive dashboards may also be developed to allow users to explore bus route performance and equity patterns directly.
 ---
 
 ## Test Plan
