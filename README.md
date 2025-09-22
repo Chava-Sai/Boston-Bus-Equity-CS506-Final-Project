@@ -61,9 +61,9 @@ Our visualizations will focus on making trends easy to understand and compare. W
 
 
 ## Test Plan
--Train the model on earlier time periods and test on more recent data to evaluate performance over time.
--Withhold 20% of the routes during training to assess how well the model generalizes to unseen routes.
--Compare prediction errors (e.g., residuals or MAE) across different demographic groups to ensure results are not biased.
+- Train the model on earlier time periods and test on more recent data to evaluate performance over time.
+- Withhold 20% of the routes during training to assess how well the model generalizes to unseen routes.
+- Compare prediction errors (e.g., residuals or MAE) across different demographic groups to ensure results are not biased.
 
 
 ---
