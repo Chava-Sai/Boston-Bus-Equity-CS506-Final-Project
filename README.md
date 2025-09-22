@@ -55,11 +55,15 @@ This project looks at MBTA bus service performance and equity across Boston. We 
 We will begin with exploratory data analysis to identify key trends and relationships. Potential approaches include clustering to group routes with similar ridership or delay patterns, linear or regression models to study how service performance relates to demographic factors, and tree-based methods such as decision trees or XGBoost for predicting delays or reliability. As we gain more experience in class, the modeling approach will be refined to best match the data.
 
 
----
+------
 
 ## Visualization Plan
 Our visualizations will focus on making trends easy to understand and compare. We plan to use route maps to show delays across neighborhoods, scatter plots to highlight relationships between service performance and community factors, and time-series charts to track ridership changes before and after the pandemic. Interactive dashboards may also be developed to allow users to explore bus route performance and equity patterns directly.
+
+
 ---
+
+
 
 ## Test Plan
 - **Temporal holdout:** train on 2018–2022, validate on 2023–2024.
