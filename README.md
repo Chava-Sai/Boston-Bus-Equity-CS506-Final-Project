@@ -16,7 +16,7 @@
 
 This project looks at MBTA bus service performance and equity across Boston. We use ridership and reliability data to study trends in passenger demand, travel times, wait times, and delays. The analysis also examines whether service differences affect communities differently, considering factors like race, income, and age. We aim to highlight improvements and disparities in MBTA service by comparing the patterns before and after the pandemic and across key bus routes.
 
-⸻
+---
 
 ## Goals of the Project
 1.	Measure ridership patterns and travel times across MBTA bus routes.
@@ -24,7 +24,7 @@ This project looks at MBTA bus service performance and equity across Boston. We 
 3.	Identify disparities in service quality and analyze how they relate to community characteristics (e.g., race, income, age). This will primarily involve regression and explanatory modeling.
 4.	Compare service trends in the pre-pandemic (2018–2019), pandemic (2020–2021), and post-pandemic (2022–2025) periods to better understand how travel behavior and service reliability have shifted.
 
-⸻
+---
 
 ## Data
 
@@ -42,7 +42,7 @@ A survey-based dataset capturing passenger demographics (e.g., age, race, income
 	•	MBTA V3 API — Real-time vehicle positions, trip updates, and predictions.
 	•	MBTA Performance Feed — Aggregated performance metrics summarizing service quality indicators such as reliability and ridership trends.
 
-⸻
+---
 
 ## Modeling the Data
 
@@ -54,7 +54,7 @@ We will begin with exploratory data analysis to identify key trends and relation
 
 The modeling approach will be refined as the project progresses, depending on data quality and complexity.
 
-⸻
+---
 
 ## Data Visualization
 
@@ -64,11 +64,11 @@ Our visualizations will focus on making trends easy to understand and compare. W
 3. Time-series charts to track ridership changes across pre-, during-, and post-pandemic periods.
 4. Interactive dashboards (if time allows) to explore bus route performance and equity patterns.
 
-⸻
+---
 
 ## Test Plan
 1.	Train the model on earlier time periods and test on more recent data to evaluate performance over time.
 2.	Withhold 20% of the routes during training to assess how well the model generalizes to unseen routes.
 3.	Compare prediction errors (e.g., residuals or MAE) across different demographic groups to ensure results are not biased.
 
-⸻
+
