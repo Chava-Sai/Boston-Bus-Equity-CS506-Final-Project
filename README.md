@@ -13,62 +13,54 @@
 ---
 
 ## Project Description
-
-This project looks at MBTA bus service performance and equity across Boston. We use ridership and reliability data to study trends in passenger demand, travel times, wait times, and delays. The analysis also examines whether service differences affect communities differently, considering factors like race, income, and age. We aim to highlight improvements and disparities in MBTA service by comparing the patterns before and after the pandemic and across key bus routes.
+This project looks at MBTA bus service performance and equity across Boston. We use ridership and reliability data to study trends in passenger demand, travel times, wait times, and delays. The analysis also examines whether service differences affect communities differently, considering factors like race, income, and age. We aim to highlight improvements and disparities in MBTA service by comparing the patterns before and after the pandemic and across key bus routes. 
 
 ---
 
 ## Goals of the Project
-1.	Measure ridership patterns and travel times across MBTA bus routes.
-2.	Evaluate wait times, delays, and overall service reliability.
-3.	Identify disparities in service quality and analyze how they relate to community characteristics (e.g., race, income, age). This will primarily involve regression and explanatory modeling.
-4.	Compare service trends in the pre-pandemic (2018–2019), pandemic (2020–2021), and post-pandemic (2022–2025) periods to better understand how travel behavior and service reliability have shifted.
+1. Measure ridership patterns and travel times across MBTA bus routes.
+2. Evaluate wait times, delays, and overall service reliability.
+3. Identify disparities in service quality and see how they relate to community characteristics (e.g., race, income, age).
+4. Compare pre- and post-pandemic service trends to understand long-term changes.
 
 ---
 
 ## Data
 
-We will focus on the datasets most relevant to our objectives, and once cleaned and finalized, we plan to upload them to Kaggle or Hugging Face for reproducibility.
-1.	**Ridership**
-	•	MBTA Bus Ridership by Trip, Season, Route, Line, and Stop
-Provides detailed ridership counts broken down by trip, route, stop, and season.
-2.	**Reliability**
-	•	MBTA Bus Arrival Departure Times (2018–2025)
-Contains historical arrival and departure records for MBTA buses. Essential for analyzing delays, wait times, and travel time reliability.
-3.	**Passenger Demographics**
-	•	MBTA 2024 System-Wide Passenger Survey Data
-A survey-based dataset capturing passenger demographics (e.g., age, race, income, commute purpose). Key for connecting service disparities to community characteristics.
-4.	**(Optional, if time permits) Live/Derived Data**
-	•	MBTA V3 API — Real-time vehicle positions, trip updates, and predictions.
-	•	MBTA Performance Feed — Aggregated performance metrics summarizing service quality indicators such as reliability and ridership trends.
+1. **Ridership**  
+   - [MBTA Bus Ridership by Trip, Season, Route, Line, and Stop](https://mbta-massdot.opendata.arcgis.com/datasets/8daf4a33925a4df59183f860826d29ee/about)  
+     Provides detailed ridership counts broken down by trip, route, stop, and season.
 
+2. **Reliability**  
+   - [MBTA Bus Arrival Departure Times (2018–2025)](https://mbta-massdot.opendata.arcgis.com/search?q=MBTA%20Bus%20Arrival%20Departure%20Times)  
+     Contains historical arrival and departure records for MBTA buses. 
+
+3. **Interactive tool for our "Rider Census"**  
+   - [MBTA 2024 System-Wide Passenger Survey Data](https://mbta-massdot.opendata.arcgis.com/datasets/7da1f62034f64cb4bc9e2afefe9a1fdc_0/explore)  
+     A survey-based dataset capturing passenger demographics (e.g., age, race, income, commute purpose).
+
+4. **(If time permits) Live/derived**  
+   - [MBTA V3 API](https://www.mbta.com/developers/v3-api)  
+     Real-time API providing current vehicle positions, trip updates, and predictions.
+     
+   - [MBTA Performance Feed](https://www.mbta.com/performance-metrics)  
+     Aggregated performance metrics published by MBTA, summarizing service quality indicators such as reliability and ridership trends.  
+    
 ---
 
 ## Modeling the Data
+We will begin with exploratory data analysis to identify key trends and relationships. Potential approaches include clustering to group routes with similar ridership or delay patterns, linear or regression models to study how service performance relates to demographic factors, and tree-based methods such as decision trees or XGBoost for predicting delays or reliability. As we gain more experience in class, the modeling approach will be refined to best match the data.
 
-We will begin with exploratory data analysis to identify key trends and relationships.
-1. Time Series Models: Since bus arrivals and ridership are sequential data, models such as RNNs or LSTMs may be more effective than standard regression in capturing temporal dynamics.
-2. Regression / Explanatory Models: Used to identify how service quality relates to community demographics.
-3. Tree-Based Methods (e.g., Decision Trees, XGBoost): Helpful for predicting delays or classifying reliability patterns.
-4. Clustering: To group bus routes with similar ridership or delay patterns.
+------
 
-The modeling approach will be refined as the project progresses, depending on data quality and complexity.
-
----
-
-## Data Visualization
-
-Our visualizations will focus on making trends easy to understand and compare. We plan to use:
-1. Route maps to show delays across neighborhoods.
-2. Scatter plots to highlight relationships between service performance and community factors.
-3. Time-series charts to track ridership changes across pre-, during-, and post-pandemic periods.
-4. Interactive dashboards (if time allows) to explore bus route performance and equity patterns.
+## Data Visualization 
+Our visualizations will focus on making trends easy to understand and compare. We plan to use route maps to show delays across neighborhoods, scatter plots to highlight relationships between service performance and community factors, and time-series charts to track ridership changes before and after the pandemic. Interactive dashboards may also be developed to allow users to explore bus route performance and equity patterns directly.
 
 ---
 
 ## Test Plan
-1.	Train the model on earlier time periods and test on more recent data to evaluate performance over time.
-2.	Withhold 20% of the routes during training to assess how well the model generalizes to unseen routes.
-3.	Compare prediction errors (e.g., residuals or MAE) across different demographic groups to ensure results are not biased.
+1. Train the model on earlier time periods and test on more recent data to evaluate performance over time.
+2. Withhold 20% of the routes during training to assess how well the model generalizes to unseen routes.
+3. Compare prediction errors (e.g., residuals or MAE) across different demographic groups to ensure results are not biased.
 
-
+---
