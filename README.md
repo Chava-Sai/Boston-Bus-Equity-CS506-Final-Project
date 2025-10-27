@@ -85,12 +85,24 @@ Our visualizations will focus on making trends easy to understand and compare. W
 ## 1. Preliminary Visualizations of Data
 
 
-### Top 20 Routes by Record Count
+#### Top Routes
 
 
 
-(<img width="1481" height="884" alt="Top 20 routes by record count" src="https://github.com/user-attachments/assets/47cd60f9-591a-40cd-b0af-c6a89612070d" />)
+<img width="1481" height="884" alt="Top 20 routes by record count" src="https://github.com/user-attachments/assets/47cd60f9-591a-40cd-b0af-c6a89612070d" />
 
 This visualization shows a bar chart of the top 20 bus routes with the highest number of records in the dataset. Each bar represents a route’s record count, labeled with exact values, and the y-axis is formatted for readability (in thousands). It highlights which routes have the most data entries in the sample.
 
+
+#### Distribution of Scheduled Headways and Arrival Delays
+
+
+<img width="1935" height="735" alt="Scheduled Headway and Arrival Delay" src="https://github.com/user-attachments/assets/7a125b48-9923-490a-97b9-437e101cb0da" />
+
+
+This visualization presents two side-by-side histograms:
+a. The left plot shows the distribution of scheduled headways (time gaps between buses), with vertical lines marking the mean and median values for comparison.
+b. The right plot displays the distribution of arrival delays in minutes, highlighting reference lines at 0 minutes, 5 minutes, and the median delay.
+
+Together, these plots illustrate how frequently different headway and delay values occur, revealing overall service regularity and punctuality.
 
