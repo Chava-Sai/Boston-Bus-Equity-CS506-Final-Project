@@ -96,7 +96,7 @@ The data processing workflow was designed to clean, standardize, and align three
 
 ---
 
-### **1. Data Loading**
+### **I. Data Loading**
 
 Three primary sources were used in this project.  
 - **Passenger Survey Data** contained aggregated information from the MBTA’s 2024 System-Wide Passenger Survey, capturing respondents’ demographic attributes (e.g., income, race, travel mode, purpose).  
@@ -107,7 +107,7 @@ Because of the large file sizes, each dataset was partially loaded (up to 30 mil
 
 ---
 
-### **2. Route ID Normalization**
+### **II. Route ID Normalization**
 
 Each dataset represented MBTA routes in slightly different ways — for instance, `"01"`, `"1"`, `"1-0-0"`, and `"34E"` could all appear as route identifiers. A custom normalization process was implemented to make them comparable across datasets. All route IDs were converted to uppercase strings, extra whitespace and underscores were stripped, and leading zeros were removed for numeric-only IDs. This ensured that all datasets referred to each route consistently (e.g., `"01"` and `"1"` were treated as the same route).  
 
@@ -115,7 +115,7 @@ New normalized columns (such as `route_id_norm`) were created to store these sta
 
 ---
 
-### **3. Correction of Route Naming Errors**
+### **III. Correction of Route Naming Errors**
 
 Some route entries included inconsistencies such as suffix underscores (e.g., `"746_"`) or formatting anomalies. These were manually corrected using simple replacement rules. The normalization process was re-run afterward to ensure the corrections propagated consistently across all datasets.  
 
@@ -127,7 +127,7 @@ This comparison provided an early check on coverage and revealed a manageable ov
 
 ---
 
-### **4. Handling Multi-Route Entries in the Survey Data**
+### **IV. Handling Multi-Route Entries in the Survey Data**
 
 In the survey data, certain responses were grouped under combined route identifiers such as `"114&116&117"`, representing riders who used multiple closely related routes. These combined entries needed to be decomposed into separate route identifiers to allow one-to-one linkage with the operational data.
 
@@ -135,7 +135,7 @@ A regular expression pattern was developed to extract valid route codes (coverin
 
 ---
 
-### **5. Data Cleaning and Filtering**
+### **V. Data Cleaning and Filtering**
 
 Invalid or empty route entries were removed from the survey dataframe to maintain data integrity. Only rows containing at least one valid route ID were retained. Next, the intersection of route identifiers across all three datasets was calculated, leaving only the subset of routes that were present in the ridership, arrival–departure, and survey data simultaneously. This filtering step eliminated inconsistencies and ensured that subsequent analysis compared truly common routes.
 
@@ -143,7 +143,7 @@ The datasets were capped at a maximum of 30 million records each to prevent exce
 
 ---
 
-### **6. Efficient Slicing and Indexing**
+### **VI. Efficient Slicing and Indexing**
 
 Since the datasets were large and Arrow-backed dataframes can trigger kernel crashes during boolean indexing, the filtering operations were optimized using NumPy-based indexing. Instead of traditional pandas filtering, boolean masks were converted into NumPy arrays of row indices, which were then used to slice the data directly. This approach improved stability and performance on large data volumes.  
 
@@ -156,7 +156,7 @@ These masks identified rows associated with route IDs present in the intersectio
 
 ---
 
-### **7. Final Output Generation and Cleaned Data Summary**
+### **VII. Final Output Generation and Cleaned Data Summary**
 
 After cleaning and aligning all datasets, the final step was to store them in a structured, analysis-ready format within a new directory named `data_cleaned_capped`.  
 
@@ -174,7 +174,7 @@ All three datasets now share a **standardized route ID system**, ensuring full c
 
 ---
 
-### **8. Key Outcomes of Data Processing**
+### **VIII. Key Outcomes of Data Processing**
 
 This data cleaning pipeline successfully integrated three disparate MBTA data sources into a consistent and scalable analytical base. The processed data now supports detailed route-level exploration of operational efficiency and rider demographics. It also establishes a reliable framework for advanced modeling tasks such as clustering, regression, or predictive analytics.  
 
@@ -188,7 +188,7 @@ Our goal was to explore whether operational and ridership characteristics of MBT
 
 ---
 
-### 1. Feature Construction
+### I. Feature Construction
 Three datasets were used:
 
 - **Ridership Data (`ridership_df`)**  
@@ -205,13 +205,13 @@ These features were merged into a single dataframe (`route_feat`), forming the a
 
 ---
 
-### 2. Data Standardization
+### II. Data Standardization
 All numeric features were standardized using **z-score normalization** via `StandardScaler` from scikit-learn.  
 This ensured that variables with different scales (e.g., “headway_mean” in minutes vs. “boardings_mean” in passenger counts) contributed equally to the clustering process.
 
 ---
 
-### 3. Clustering Approach
+### III. Clustering Approach
 
 We applied **two unsupervised clustering methods**: **K-Means and Hierarchical Clustering** to identify homogeneous groups of routes based on their operational characteristics.
 
@@ -248,7 +248,7 @@ In addition to K-Means, we applied **agglomerative hierarchical clustering** to 
 <br><br>
 ---
 
-### 4. Demographic Correlation Analysis
+### IV. Demographic Correlation Analysis
 To examine potential relationships between operational clusters and rider demographics:
 
 - The **survey_df** was transformed into a long-form dataset (`survey_long`), exploding route arrays (e.g., `['114', '116', '117']`) into individual rows.  
@@ -260,7 +260,7 @@ To examine potential relationships between operational clusters and rider demogr
 
 ---
 
-### 5. Preliminary Results
+### V. Preliminary Results
 
 **Cluster Formation:**  
 K-Means identified **three** operationally distinct route groups, while Hierarchical Clustering revealed **four clusters**, indicating possible sub-patterns in route characteristics.
