@@ -289,13 +289,15 @@ Income and ethnicity proportions remained largely similar across all clusters, w
 
 <img width="990" height="590" alt="Ethnicity dis per cluster" src="https://github.com/user-attachments/assets/073c28fd-0141-4d1f-954b-7e7a86bf03a5" />
 
-
 <br><br>
 
 <img width="1089" height="590" alt="Income dis per hierarchical cluster" src="https://github.com/user-attachments/assets/00a73f29-4dad-4b70-a6d4-91a6edb5548b" />\\
 
 <br><br>
 
+<img width="1089" height="590" alt="Ethnicity dis per hierarchical cluster" src="https://github.com/user-attachments/assets/2e6ec0c2-f2bd-4501-a241-42891198d1dd" />
+
+<br><br>
 
 **Preliminary Insight:**  
 Overall, the clustering results did not reveal clear or promising patterns.  
