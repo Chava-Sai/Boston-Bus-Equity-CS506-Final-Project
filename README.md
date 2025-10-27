@@ -15,7 +15,7 @@ The cleaned dataset used for this analysis is hosted on Kaggle.
 
 The final project structure should look like this:
 
-Boston-Bus-Equity-CS506-Final-Project/
+<!-- Boston-Bus-Equity-CS506-Final-Project/
 ├── data_cleaned_capped/
 │   ├── arrival_departure.parquet
 │   ├── ridership.csv
@@ -23,7 +23,9 @@ Boston-Bus-Equity-CS506-Final-Project/
 ├── notebooks/clustering/
 │   ├── clustering.ipynb
 │   └── hierarchical_clustering.ipynb
-└── README.md
+└── README.md -->
+
+
 
 ### c. Run the Analysis Notebooks
 All clustering analysis is conducted within Jupyter Notebooks located in the `clustering/` directory.
