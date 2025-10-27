@@ -92,89 +92,6 @@ This heatmap compares lateness percentages across multiple years for the 20 rout
 
 ---
 
-<!-- ## 3. Data Modeling Methods -->
-
-<!-- - ### K-Means Variants
-
-<br>
-
-This line chart compares silhouette scores across different numbers of clusters (K = 2–6) for both standard k-means and k-means++ initializations.
-It helps identify the optimal cluster count and shows which initialization method provides better-defined groupings of bus routes based on lateness and delay behavior.
-
-<br>
-
-<img width="1180" height="700" alt="Silhouette vs K" src="https://github.com/user-attachments/assets/001020bf-51ef-4d51-9733-259d04209140" />
-
-<br><br><br>
-
-- ### DBSCAN
-
-<br>
-
-This heatmap visualizes DBSCAN clustering performance for various combinations of eps and min_samples parameters.
-Each cell’s color indicates the silhouette score, allowing quick assessment of how clustering quality changes with different neighborhood sizes and density thresholds.
-
-<br>
-
-<img width="902" height="556" alt="DBSCAN Silhouette heatmap" src="https://github.com/user-attachments/assets/41910437-e8ff-4a1d-a73a-e1e7306ea6bb" />
-
-<br><br><br>
-
-- ### Cluster Scatter Plots for Best Models
-
-<br>
-
-For each clustering method, this scatter plot displays routes grouped into clusters using their late rate (%) and average delay (minutes).
-Clusters are color-coded and labeled from Low to High lateness, illustrating how routes naturally group based on punctuality and delay severity.
-
-<br>
-
-<img width="1180" height="700" alt="K means" src="https://github.com/user-attachments/assets/d3aa001a-5bea-458f-816e-da61174ad36e" />
-
-<br><br>
-
-<img width="1180" height="700" alt="K means ++" src="https://github.com/user-attachments/assets/f587d702-113f-4cc0-b686-71943fafe16e" />
-
-<br><br>
-
-<img width="1180" height="700" alt="DBSCAN" src="https://github.com/user-attachments/assets/9ab19890-89df-4036-84f8-fcfcc5f60e09" />
-
-<br><br><br>
-
-- ### Cluster Size Distribution per Method
-
-<br>
-
-These bar charts show the number of routes within each cluster for the best-performing model of each method (k-means, k-means++, and DBSCAN).
-They provide insight into cluster balance, helping assess whether certain clusters dominate or if the segmentation is evenly distributed.
-
-<br>
-
-<img width="820" height="460" alt="Kmeans cluster size" src="https://github.com/user-attachments/assets/a40cac60-2c2f-494b-92a1-f48d32305ae1" />
-
-<br>
-
-<img width="820" height="460" alt="K means ++ cluster size" src="https://github.com/user-attachments/assets/0b9e20c9-bc43-48f0-85b8-d125d9db024d" />
-
-<br>
-
-<img width="820" height="460" alt="DBSCAN cluster size" src="https://github.com/user-attachments/assets/ad61d2e2-8573-4564-8d9d-afdaa0419ae6" />
-
-<br><br><br>
-
-- ### Overall Best Clustering Model (Highest Silhouette Score)
-
-<br>
-
-This final scatter plot visualizes the globally best clustering configuration across all tested models and parameters.
-It highlights how routes are separated in lateness–delay space under the most effective model, representing the clearest and most meaningful route groupings in the analysis.
-
-<br>
-
-<img width="1255" height="700" alt="Overall Best - DBSCAN" src="https://github.com/user-attachments/assets/6271eb8b-ff54-453c-8899-6e3979e28d71" />
-
-<br> -->
-
 ### **2. Data Processing**
 
 The data processing workflow was designed to clean, standardize, and align three large datasets from the Massachusetts Bay Transportation Authority (MBTA): the ridership data, the arrival–departure time data, and the 2024 system-wide passenger survey. The goal was to prepare a unified, high-quality dataset suitable for downstream modeling and clustering analysis.
@@ -268,73 +185,89 @@ By standardizing route identifiers, correcting inconsistencies, expanding multi-
 
 ---
 
-## **3. Data Modeling Methods**
+## 3. Data Modeling Methods
 
 Our goal was to explore whether operational and ridership characteristics of MBTA bus routes exhibit natural groupings and, subsequently, whether those groups correlate with demographic or socioeconomic patterns derived from the MBTA passenger survey data.
 
-### **1. Feature Construction**
-Three datasets were used:
-- **Ridership Data** (`ridership_df`) 
-<!-- — contained stop-level records of boardings, alightings, passenger loads, direction identifiers, and seasonal attributes. -->
-- **Arrival–Departure Data** 
-<!-- (`arrival_departure_df`) — included service reliability metrics such as headway, scheduled headway, and earliness (deviation from schedule) for each route and stop. -->
-- **Survey Data** 
-<!-- (`survey_df`) — summarized rider demographics and behaviors, including income levels, racial/ethnic background, and travel characteristics, aggregated by route reporting group. -->
+---
 
-From the ridership and arrival–departure datasets, we constructed **route-level operational feature vectors**.  
+### 1. Feature Construction
+Three datasets were used:
+
+- **Ridership Data (`ridership_df`)**  
+- **Arrival–Departure Data (`arrival_departure_df`) **  
+- **Survey Data (`survey_df`) **
+
+From the ridership and arrival–departure datasets, we constructed route-level operational feature vectors.  
 For each route, the following aggregated statistics were computed:
-- *Ridership metrics:* mean and median boardings, alightings, and passenger load, as well as total record count and directional balance.
-- *Service metrics:* mean and standard deviation of headway, mean scheduled headway, mean earliness, number of unique stops, total observations, and a derived on-time performance rate (fraction of arrivals within ±60 seconds of schedule).
+
+- **Ridership metrics:** mean and median boardings, alightings, and passenger load, as well as total record count and directional balance.  
+- **Service metrics:** mean and standard deviation of headway, mean scheduled headway, mean earliness, number of unique stops, total observations, and a derived on-time performance rate (fraction of arrivals within ±60 seconds of schedule).
 
 These features were merged into a single dataframe (`route_feat`), forming the analytical basis for clustering.
 
-### **2. Data Standardization**
-All numeric features were standardized using **z-score normalization** via `StandardScaler` from *scikit-learn*.  
+---
+
+### 2. Data Standardization
+All numeric features were standardized using **z-score normalization** via `StandardScaler` from scikit-learn.  
 This ensured that variables with different scales (e.g., “headway_mean” in minutes vs. “boardings_mean” in passenger counts) contributed equally to the clustering process.
-
-### **3. Clustering Approach**
-We applied **K-Means clustering** to identify homogeneous groups of routes based on their ridership and service characteristics.  
-To determine the optimal number of clusters (K), we computed **silhouette scores** for values of K = 2–8.  
-The best-performing K=3 was selected as the one yielding the highest silhouette coefficient, balancing intra-cluster compactness and inter-cluster separation.
-
-The final K-Means model was then trained on the standardized features, producing:
-- A `cluster` label for each route.
-- Cluster centroids (in both scaled and original feature space) for interpretability.
-
-To visualize the clusters, a **Principal Component Analysis (PCA)** was conducted to project the high-dimensional route features into two principal components. The resulting 2D scatterplot illustrated separability and relative density among clusters.
-
-### **4. Demographic Correlation Analysis**
-To examine potential relationships between operational clusters and rider demographics:
-1. The `survey_df` was transformed into a **long-form dataset** (`survey_long`), exploding routes listed as arrays (e.g., `['114','116','117']`) into individual rows.
-2. Routes were normalized to consistent string identifiers (e.g., “1”, “34E”, “SL4”).
-3. From `survey_long`, we isolated records containing *income-related* and *ethnicity-related* categories using keyword-based filters (`INCOME`, `RACE`, `ETHNIC`).
-4. For each demographic subset, we built **pivot tables** (route × category) of mean weighted percentages and normalized them to represent proportional distributions.
-5. These pivot tables were then merged with the cluster assignments, allowing us to compute **average demographic composition per cluster**.
-
-Finally, the distributions were visualized via grouped bar charts comparing proportions of income and ethnicity categories across clusters.
 
 ---
 
-## **4. Preliminary Results**
+### 3. Clustering Approach
 
-- **Cluster Formation:**  
-  The K-Means model identified three distinct clusters (`K=3`) as optimal based on silhouette analysis.  
-  Examination of the cluster centroids revealed that:
-  - One cluster primarily represented routes with **higher passenger loads and shorter headways** (frequent, busy urban routes).
-  - Another represented **moderate headway and ridership routes**.
-  - The third contained **routes with lower frequency or more variability in headway**, likely corresponding to suburban or less-trafficked lines.
+We applied **two unsupervised clustering methods**: **K-Means and Hierarchical Clustering** to identify homogeneous groups of routes based on their operational characteristics.
 
-- **Visualization:**  
-  The PCA plot showed that while clusters were not perfectly separable, they formed reasonably compact groups, confirming the existence of operationally distinct route categories.
+#### **K-Means Clustering**
+- The number of clusters (*K*) was optimized by computing **silhouette scores** for values from 2 to 8.  
+- The optimal *K=3* was selected for achieving the best balance between compactness and separation.
+- The final model assigned a **cluster label** to each route and computed **centroids** in both scaled and original feature spaces.  
+- A **PCA projection** (2D scatter plot) was used to visualize separability and density among clusters.
 
-- **Demographic Correlation:**  
-  When comparing route clusters with income and ethnicity distributions from the passenger survey, **no strong or systematic demographic pattern** was observed.  
-  - Income proportions were relatively uniform across clusters, with only minor variations — e.g., Cluster 2 had a slightly higher share of respondents in the 30–60% of Area Median Income bracket.  
-  - Ethnic composition was also broadly similar, though Cluster 0/1 showed marginally higher proportions of Black or African American riders, and Cluster 2 slightly higher proportions of White riders.
+#### **Hierarchical Clustering**
+In addition to K-Means, we applied **agglomerative hierarchical clustering** to validate and compare the natural structure of route groupings.  
+- Using the **Ward linkage** method (which minimizes within-cluster variance), we constructed a **dendrogram** illustrating the hierarchical relationships among routes.  
+- Based on the dendrogram inspection and inconsistency coefficients, we cut the hierarchy into **4 major clusters**.  
+- The cluster memberships from hierarchical clustering were compared to those from K-Means to assess **consistency and stability** of grouping patterns.
+- Both approaches produced largely overlapping route clusters, confirming that the primary segmentation was robust to the choice of clustering algorithm.
 
-- **Interpretation:**  
-  These preliminary findings suggest that **service and ridership characteristics alone do not clearly separate routes by demographic patterns**.  
-  The K-Means model effectively grouped routes by **operational performance** rather than by the socioeconomic composition of their riders — indicating that service differences (frequency, load, punctuality) are not strictly determined by demographic factors at the route level.
+---
+
+### 4. Demographic Correlation Analysis
+To examine potential relationships between operational clusters and rider demographics:
+
+- The **survey_df** was transformed into a long-form dataset (`survey_long`), exploding route arrays (e.g., `['114', '116', '117']`) into individual rows.  
+- Routes were normalized to consistent identifiers (e.g., “1”, “34E”, “SL4”).  
+- From `survey_long`, income-related and ethnicity-related categories were isolated using keyword-based filters.  
+- For each demographic subset, **pivot tables (route × category)** were computed to capture mean weighted proportions, normalized to represent percentage distributions.  
+- These tables were merged with cluster assignments (from both K-Means and Hierarchical Clustering) to evaluate demographic composition per cluster.  
+- The results were visualized as **grouped bar charts** comparing proportions of income and ethnicity categories across clusters.
+
+---
+
+### 5. Preliminary Results
+
+**Cluster Formation:**  
+K-Means identified **three** operationally distinct route groups, while Hierarchical Clustering revealed **four clusters**, indicating possible sub-patterns in route characteristics.
+
+- **Cluster 1:** High passenger load and short headways — dense, high-frequency urban routes.  
+- **Cluster 2:** Moderate load and balanced headways — regular city routes with steady ridership.  
+- **Cluster 3:** Longer headways and lower passenger counts — typically suburban or low-demand routes.  
+- **Cluster 4 (Hierarchical-only):** Transitional or hybrid routes showing moderate ridership but higher variability in headway and punctuality metrics.
+
+**Visualization:**  
+The **PCA scatter plot** and **dendrogram** showed partial separation between clusters, though overlaps were frequent.  
+Cluster boundaries were not strongly distinct, suggesting that current feature combinations may not fully capture the underlying differences in route performance.
+
+**Demographic Correlation:**  
+No strong or systematic correlation was observed between route clusters and demographic distributions.  
+Income and ethnicity proportions remained largely similar across all clusters, with only minor variations.
+
+**Preliminary Insight:**  
+Overall, the clustering results did not reveal clear or promising patterns.  
+This suggests the need for **improved feature extraction**, potentially incorporating additional operational metrics (e.g., temporal demand variation, stop-level reliability) or refining existing ones to better represent the behavioral and service-level diversity among MBTA routes.
+
+
 
 
 
