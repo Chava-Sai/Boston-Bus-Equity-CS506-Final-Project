@@ -87,7 +87,7 @@ Our visualizations will focus on making trends easy to understand and compare. W
 
 <br><br>
 
-### Top Routes
+### - Top Routes
 
 <br>
 
@@ -99,7 +99,7 @@ This visualization shows a bar chart of the top 20 bus routes with the highest n
 
 <br><br><br>
 
-### Distribution of Scheduled Headways and Arrival Delays
+### - Distribution of Scheduled Headways and Arrival Delays
 
 <br>
 
@@ -114,7 +114,7 @@ Together, these plots illustrate how frequently different headway and delay valu
 
 <br><br><br>
 
-### Top Bus Routes by Late Arrival Rate
+### - Top Bus Routes by Late Arrival Rate
 
 <br>
 
@@ -138,7 +138,7 @@ This horizontal bar chart highlights the top 15 bus routes with the highest perc
 
 <br><br><br>
 
-### Yearly Late-Rate Trends
+### - Yearly Late-Rate Trends
 
 <br>
 
@@ -150,7 +150,7 @@ This line chart tracks the year-by-year lateness trends for the five worst-perfo
 
 <br><br><br>
 
-### Annual Lateness Heatmap for the Worst-Performing Routes
+### - Annual Lateness Heatmap for the Worst-Performing Routes
 
 <br>
 
