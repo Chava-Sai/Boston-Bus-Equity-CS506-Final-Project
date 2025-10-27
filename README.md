@@ -75,15 +75,19 @@ Our visualizations will focus on making trends easy to understand and compare. W
 
 # Mid-term Report
 
----
+## Table of Contents
+1. [Preliminary Visualizations of Data.](#data visualization)  
+2. [Data Processing](#description of data processing)  
+3. [Data modeling methods](#description of data modeling methods)   
+4. [Preliminary Results](#Preliminary results)   
 
-## Preliminary Visualizations of Data
 
----
+## 1. Preliminary Visualizations of Data
+
 
 ### Top 20 Routes by Record Count
 
----
+
 
 [![BU Spark] (images/<img width="1481" height="884" alt="Top 20 routes by record count" src="https://github.com/user-attachments/assets/47cd60f9-591a-40cd-b0af-c6a89612070d" />)
 
