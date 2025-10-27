@@ -89,6 +89,6 @@ Our visualizations will focus on making trends easy to understand and compare. W
 
 
 
-[![BU Spark] (images/<img width="1481" height="884" alt="Top 20 routes by record count" src="https://github.com/user-attachments/assets/47cd60f9-591a-40cd-b0af-c6a89612070d" />)
+![image] (images/<img width="1481" height="884" alt="Top 20 routes by record count" src="https://github.com/user-attachments/assets/47cd60f9-591a-40cd-b0af-c6a89612070d" />)
 
 
