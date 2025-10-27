@@ -81,20 +81,21 @@ Our visualizations will focus on making trends easy to understand and compare. W
 3. [Data modeling methods](#description of data modeling methods)   
 4. [Preliminary Results](#Preliminary results)   
 
+---
 
 ## 1. Preliminary Visualizations of Data
 
 
-#### Top Routes
-
+### Top Routes
 
 
 <img width="1481" height="884" alt="Top 20 routes by record count" src="https://github.com/user-attachments/assets/47cd60f9-591a-40cd-b0af-c6a89612070d" />
 
 This visualization shows a bar chart of the top 20 bus routes with the highest number of records in the dataset. Each bar represents a route’s record count, labeled with exact values, and the y-axis is formatted for readability (in thousands). It highlights which routes have the most data entries in the sample.
 
+<br><br><br>
 
-#### Distribution of Scheduled Headways and Arrival Delays
+### Distribution of Scheduled Headways and Arrival Delays
 
 
 <img width="1935" height="735" alt="Scheduled Headway and Arrival Delay" src="https://github.com/user-attachments/assets/7a125b48-9923-490a-97b9-437e101cb0da" />
