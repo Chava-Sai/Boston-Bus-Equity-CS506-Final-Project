@@ -13,8 +13,6 @@
 ---
 ## 1. Preliminary Visualizations of Data
 
-<br>
-
 - ### Top Routes
 
 <br>
