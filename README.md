@@ -25,7 +25,7 @@ This visualization shows a bar chart of the top 20 bus routes with the highest n
 
 <img width="700" height="300" alt="Top 20 routes by record count" src="https://github.com/user-attachments/assets/47cd60f9-591a-40cd-b0af-c6a89612070d" />
 
-<br><br><br>
+<br><br>
 
 - ### Distribution of Scheduled Headways and Arrival Delays
 
@@ -38,9 +38,9 @@ Together, these plots illustrate how frequently different headway and delay valu
 
 <br>
 
-<img width="1935" height="735" alt="Scheduled Headway and Arrival Delay" src="https://github.com/user-attachments/assets/7a125b48-9923-490a-97b9-437e101cb0da" />
+<img width="700" height="300" alt="Scheduled Headway and Arrival Delay" src="https://github.com/user-attachments/assets/7a125b48-9923-490a-97b9-437e101cb0da" />
 
-<br><br><br>
+<br><br>
 
 - ### Top Bus Routes by Late Arrival Rate
 
@@ -50,9 +50,9 @@ This visualization highlights the 15 bus routes with the highest percentage of l
 
 <br>
 
-<img width="1175" height="700" alt="top 15 lines which are late more often (by late rate more than 5 mins)" src="https://github.com/user-attachments/assets/25f3bc3d-4365-44cb-b4d9-c89c935a3f16" />
+<img width="700" height="300" alt="top 15 lines which are late more often (by late rate more than 5 mins)" src="https://github.com/user-attachments/assets/25f3bc3d-4365-44cb-b4d9-c89c935a3f16" />
 
-<br><br><br>
+<br><br>
 
 - ### Most-Late Routes in the Latest Year
 
@@ -64,7 +64,7 @@ This horizontal bar chart highlights the top 15 bus routes with the highest perc
 
 <img width="1175" height="700" alt="Most late routes in 2025 (late by more than 5 mins)" src="https://github.com/user-attachments/assets/4613c31a-e987-41d8-896c-01c4262fc094" />
 
-<br><br><br>
+<br><br>
 
 - ### Yearly Late-Rate Trends
 
@@ -74,9 +74,9 @@ This line chart tracks the year-by-year lateness trends for the five worst-perfo
 
 <br>
 
-<img width="1300" height="700" alt="late rate trends by year (top 5 worst routes)" src="https://github.com/user-attachments/assets/f423f38d-ca4f-42b1-8781-344b16f400fa" />
+<img width="700" height="300" alt="late rate trends by year (top 5 worst routes)" src="https://github.com/user-attachments/assets/f423f38d-ca4f-42b1-8781-344b16f400fa" />
 
-<br><br><br>
+<br><br>
 
 - ### Annual Lateness Heatmap for the Worst-Performing Routes
 
@@ -86,7 +86,7 @@ This heatmap compares lateness percentages across multiple years for the 20 rout
 
 <br>
 
-<img width="1318" height="820" alt="late rate percentage by route vs year (worst 20 routes overall)" src="https://github.com/user-attachments/assets/13cccbd7-9bd6-4fa7-ad54-be0c847176a6" />
+<img width="700" height="300" alt="late rate percentage by route vs year (worst 20 routes overall)" src="https://github.com/user-attachments/assets/13cccbd7-9bd6-4fa7-ad54-be0c847176a6" />
 
 <br><br>
 
@@ -174,7 +174,6 @@ All three datasets now share a **standardized route ID system**, ensuring full c
 - `ridership.csv` — aggregated route-level boardings, alightings, and load data.  
 - `survey.csv` — demographic and behavioral insights linked to valid routes.
 
-
 ---
 
 ### **8. Key Outcomes of Data Processing**
@@ -225,13 +224,13 @@ We applied **two unsupervised clustering methods**: **K-Means and Hierarchical C
 - A **PCA projection** (2D scatter plot) was used to visualize separability and density among clusters.
 <br>
 
-<img width="700" height="468" alt="Silhoutte vs K" src="https://github.com/user-attachments/assets/e54b226d-b0cc-4fc8-8c55-2e75f1d6e807" />
+<img width="700" height="300" alt="Silhoutte vs K" src="https://github.com/user-attachments/assets/e54b226d-b0cc-4fc8-8c55-2e75f1d6e807" />
 
 <br><br>
 
-<img width="689" height="545" alt="K means cluster" src="https://github.com/user-attachments/assets/5befc26d-9a0d-40f3-9fbb-e8e6b4cc0cf4" />
+<img width="700" height="300" alt="K means cluster" src="https://github.com/user-attachments/assets/5befc26d-9a0d-40f3-9fbb-e8e6b4cc0cf4" />
 
-<br><br><br>
+<br><br>
 
 #### **Hierarchical Clustering**
 In addition to K-Means, we applied **agglomerative hierarchical clustering** to validate and compare the natural structure of route groupings.  
@@ -242,13 +241,13 @@ In addition to K-Means, we applied **agglomerative hierarchical clustering** to 
 
 <br>
 
-<img width="1189" height="590" alt="Hierarchical cluster dendogram" src="https://github.com/user-attachments/assets/db004e42-19bd-4797-a75c-32e8fe97a581" />
+<img width="700" height="300" alt="Hierarchical cluster dendogram" src="https://github.com/user-attachments/assets/db004e42-19bd-4797-a75c-32e8fe97a581" />
 
 <br><br>
 
-<img width="689" height="545" alt="Hierarchical cluster - pca projection" src="https://github.com/user-attachments/assets/dfc062ae-dbd2-4e3c-8475-95fc31c2a671" />
+<img width="700" height="300" alt="Hierarchical cluster - pca projection" src="https://github.com/user-attachments/assets/dfc062ae-dbd2-4e3c-8475-95fc31c2a671" />
 
-<br><br><br>
+<br><br>
 ---
 
 ### 4. Demographic Correlation Analysis
@@ -287,7 +286,7 @@ Income and ethnicity proportions remained largely similar across all clusters, w
 
 <br>
 
-<img width="989" height="590" alt="Income dis per cluster" src="https://github.com/user-attachments/assets/bedf63c8-8b48-4a68-a76f-2f339bf15ca3" />
+<img width="700" height="300" alt="Income dis per cluster" src="https://github.com/user-attachments/assets/bedf63c8-8b48-4a68-a76f-2f339bf15ca3" />
 
 <br><br>
 
@@ -295,7 +294,7 @@ Income and ethnicity proportions remained largely similar across all clusters, w
 
 <br>
 
-<img width="990" height="590" alt="Ethnicity dis per cluster" src="https://github.com/user-attachments/assets/073c28fd-0141-4d1f-954b-7e7a86bf03a5" />
+<img width="700" height="300" alt="Ethnicity dis per cluster" src="https://github.com/user-attachments/assets/073c28fd-0141-4d1f-954b-7e7a86bf03a5" />
 
 <br><br>
 
@@ -307,7 +306,7 @@ Income and ethnicity proportions remained largely similar across all clusters, w
 
 <br><br>
 ### Ethnicity Distribution obtained from Hierarchical Clustering
-<img width="1089" height="590" alt="Ethnicity dis per hierarchical cluster" src="https://github.com/user-attachments/assets/08041fef-5666-4da6-b634-58ed6c2bddb8" />
+<img width="700" height="300" alt="Ethnicity dis per hierarchical cluster" src="https://github.com/user-attachments/assets/08041fef-5666-4da6-b634-58ed6c2bddb8" />
 
 <br><br>
 
