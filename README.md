@@ -90,7 +90,7 @@ This heatmap compares lateness percentages across multiple years for the 20 rout
 
 ---
 
-### **2. Data Processing**
+## **2. Data Processing**
 
 The data processing workflow was designed to clean, standardize, and align three large datasets from the Massachusetts Bay Transportation Authority (MBTA): the ridership data, the arrival–departure time data, and the 2024 system-wide passenger survey. The goal was to prepare a unified, high-quality dataset suitable for downstream modeling and clustering analysis.
 
