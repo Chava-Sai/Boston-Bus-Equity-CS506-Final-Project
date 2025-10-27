@@ -283,18 +283,30 @@ Income and ethnicity proportions remained largely similar across all clusters, w
 
 <br>
 
+### Income Distribution obtained from K means
+
+<br>
+
 <img width="989" height="590" alt="Income dis per cluster" src="https://github.com/user-attachments/assets/bedf63c8-8b48-4a68-a76f-2f339bf15ca3" />
 
 <br><br>
+
+### Ethnicity Distribution obtained from K means
+
+<br>
 
 <img width="990" height="590" alt="Ethnicity dis per cluster" src="https://github.com/user-attachments/assets/073c28fd-0141-4d1f-954b-7e7a86bf03a5" />
 
 <br><br>
 
+### Income Distribution obtained from Hierarchical Clustering
+
+<br>
+
 <img width="1089" height="590" alt="Income dis per hierarchical cluster" src="https://github.com/user-attachments/assets/00a73f29-4dad-4b70-a6d4-91a6edb5548b" />
 
 <br><br>
-
+### Ethnicity Distribution obtained from Hierarchical Clustering
 <img width="1089" height="590" alt="Ethnicity dis per hierarchical cluster" src="https://github.com/user-attachments/assets/08041fef-5666-4da6-b634-58ed6c2bddb8" />
 
 <br><br>
