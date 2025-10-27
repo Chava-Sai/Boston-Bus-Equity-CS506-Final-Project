@@ -23,7 +23,7 @@ This visualization shows a bar chart of the top 20 bus routes with the highest n
 
 <br>
 
-<img width="1481" height="884" alt="Top 20 routes by record count" src="https://github.com/user-attachments/assets/47cd60f9-591a-40cd-b0af-c6a89612070d" />
+<img width="500" height="300" alt="Top 20 routes by record count" src="https://github.com/user-attachments/assets/47cd60f9-591a-40cd-b0af-c6a89612070d" />
 
 <br><br><br>
 
