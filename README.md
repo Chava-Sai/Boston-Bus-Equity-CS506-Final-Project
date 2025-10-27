@@ -71,3 +71,13 @@ Our visualizations will focus on making trends easy to understand and compare. W
 2.	Withhold 20% of the routes during training to assess how well the model generalizes to unseen routes.
 3.	Compare prediction errors (e.g., residuals or MAE) across different demographic groups to ensure results are not biased.
 
+---
+
+# Mid-term Report
+
+---
+
+## Preliminary Visualizations of Data
+[![BU Spark] (images/<img width="1481" height="884" alt="Top 20 routes by record count" src="https://github.com/user-attachments/assets/47cd60f9-591a-40cd-b0af-c6a89612070d" />)
+
+
