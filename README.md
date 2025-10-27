@@ -5,13 +5,12 @@
 # Mid-term Report
 
 ## Table of Contents
-1. Preliminary Visualizations of Data (#data visualization)  
-2. Data Processing (#description of data processing)  
-3. Data modeling methods (#description of data modeling methods)   
-4. Preliminary Results (#Preliminary results)   
+1. [Preliminary Visualizations of Data](#1-preliminary-visualizations-of-data)  
+2. [Data Processing](#2-data-processing)  
+3. [Data Modeling Methods](#3-data-modeling-methods)  
+4. [Preliminary Results](#4-preliminary-results)
 
 ---
-
 ## 1. Preliminary Visualizations of Data
 
 <br><br>
@@ -176,6 +175,98 @@ It highlights how routes are separated in lateness–delay space under the most 
 
 <br> -->
 
+### **2. Data Processing**
+
+The data processing workflow was designed to clean, standardize, and align three large datasets from the Massachusetts Bay Transportation Authority (MBTA): the ridership data, the arrival–departure time data, and the 2024 system-wide passenger survey. The goal was to prepare a unified, high-quality dataset suitable for downstream modeling and clustering analysis.
+
+---
+
+### **1. Data Loading**
+
+Three primary sources were used in this project.  
+- **Passenger Survey Data** contained aggregated information from the MBTA’s 2024 System-Wide Passenger Survey, capturing respondents’ demographic attributes (e.g., income, race, travel mode, purpose).  
+- **Bus Ridership Data** contained stop-level boarding, alighting, and load observations across several years and seasons from 2016 to 2024.  
+- **Arrival–Departure Data** stored detailed service-level information such as headways, scheduled times, and earliness or lateness of bus arrivals for each route and direction.
+
+Because of the large file sizes, each dataset was partially loaded (up to 30 million rows) to balance memory efficiency and coverage. The data was read using the pandas and PyArrow libraries, with all three dataframes printed and inspected to verify structure, column types, and consistency of key identifiers.
+
+---
+
+### **2. Route ID Normalization**
+
+Each dataset represented MBTA routes in slightly different ways — for instance, `"01"`, `"1"`, `"1-0-0"`, and `"34E"` could all appear as route identifiers. A custom normalization process was implemented to make them comparable across datasets. All route IDs were converted to uppercase strings, extra whitespace and underscores were stripped, and leading zeros were removed for numeric-only IDs. This ensured that all datasets referred to each route consistently (e.g., `"01"` and `"1"` were treated as the same route).  
+
+New normalized columns (such as `route_id_norm`) were created to store these standardized identifiers while keeping the raw data intact. This step was critical for accurate merging and comparison later in the pipeline.
+
+---
+
+### **3. Correction of Route Naming Errors**
+
+Some route entries included inconsistencies such as suffix underscores (e.g., `"746_"`) or formatting anomalies. These were manually corrected using simple replacement rules. The normalization process was re-run afterward to ensure the corrections propagated consistently across all datasets.  
+
+Unique route sets were then extracted from each dataset, and the intersections and differences were computed to identify:  
+- Routes that appeared in all datasets, and  
+- Routes that were missing from one or more datasets.
+
+This comparison provided an early check on coverage and revealed a manageable overlap suitable for merging.
+
+---
+
+### **4. Handling Multi-Route Entries in the Survey Data**
+
+In the survey data, certain responses were grouped under combined route identifiers such as `"114&116&117"`, representing riders who used multiple closely related routes. These combined entries needed to be decomposed into separate route identifiers to allow one-to-one linkage with the operational data.
+
+A regular expression pattern was developed to extract valid route codes (covering both numeric and alphanumeric patterns like `"SL1"`, `"CT2"`, and `"34E"`). Each multi-route entry was expanded into a Python list (for example, `"114&116&117"` became `["114", "116", "117"]`). The survey dataframe was then exploded so that each individual route received its own row. This ensured that demographic information could be accurately mapped to specific route identifiers.
+
+---
+
+### **5. Data Cleaning and Filtering**
+
+Invalid or empty route entries were removed from the survey dataframe to maintain data integrity. Only rows containing at least one valid route ID were retained. Next, the intersection of route identifiers across all three datasets was calculated, leaving only the subset of routes that were present in the ridership, arrival–departure, and survey data simultaneously. This filtering step eliminated inconsistencies and ensured that subsequent analysis compared truly common routes.
+
+The datasets were capped at a maximum of 30 million records each to prevent excessive memory usage. This cap was sufficient to capture all relevant data while ensuring smooth processing.
+
+---
+
+### **6. Efficient Slicing and Indexing**
+
+Since the datasets were large and Arrow-backed dataframes can trigger kernel crashes during boolean indexing, the filtering operations were optimized using NumPy-based indexing. Instead of traditional pandas filtering, boolean masks were converted into NumPy arrays of row indices, which were then used to slice the data directly. This approach improved stability and performance on large data volumes.  
+
+Three masks were created:
+- One for arrival–departure records (`mask_arr`)  
+- One for ridership records (`mask_rid`)  
+- One for survey entries (`mask_svy`)  
+
+These masks identified rows associated with route IDs present in the intersection of all datasets. Using this approach, only relevant rows were retained, significantly reducing the size of the working data.
+
+---
+
+### **7. Final Output Generation and Cleaned Data Summary**
+
+After cleaning and aligning all datasets, the final step was to store them in a structured, analysis-ready format within a new directory named `data_cleaned_capped`.  
+
+- **Arrival–departure data** was saved as a **Parquet file** to preserve data types and support large-scale I/O.  
+- **Ridership** and **survey data** were saved as **CSV files** for easy inspection and compatibility with other tools.  
+
+A **chunked writing approach** (50,000 rows per batch) was used to prevent memory overload during saving.  
+
+All three datasets now share a **standardized route ID system**, ensuring full compatibility for integration. Invalid, duplicate, and malformed routes were removed, leaving only valid overlapping routes.  
+
+**Final Outputs:**
+- `arrival_departure.parquet` — stop-level operational metrics (headway, earliness).  
+- `ridership.csv` — aggregated route-level boardings, alightings, and load data.  
+- `survey.csv` — demographic and behavioral insights linked to valid routes.
+
+
+---
+
+### **8. Key Outcomes of Data Processing**
+
+This data cleaning pipeline successfully integrated three disparate MBTA data sources into a consistent and scalable analytical base. The processed data now supports detailed route-level exploration of operational efficiency and rider demographics. It also establishes a reliable framework for advanced modeling tasks such as clustering, regression, or predictive analytics.  
+
+By standardizing route identifiers, correcting inconsistencies, expanding multi-route survey entries, and efficiently filtering records, the pipeline ensures that all subsequent analyses are performed on harmonized, high-quality data.
+
+---
 
 ## **3. Data Modeling Methods**
 
@@ -183,9 +274,12 @@ Our goal was to explore whether operational and ridership characteristics of MBT
 
 ### **1. Feature Construction**
 Three datasets were used:
-- **Ridership Data** (`ridership_df`) — contained stop-level records of boardings, alightings, passenger loads, direction identifiers, and seasonal attributes.
-- **Arrival–Departure Data** (`arrival_departure_df`) — included service reliability metrics such as headway, scheduled headway, and earliness (deviation from schedule) for each route and stop.
-- **Survey Data** (`survey_df`) — summarized rider demographics and behaviors, including income levels, racial/ethnic background, and travel characteristics, aggregated by route reporting group.
+- **Ridership Data** (`ridership_df`) 
+<!-- — contained stop-level records of boardings, alightings, passenger loads, direction identifiers, and seasonal attributes. -->
+- **Arrival–Departure Data** 
+<!-- (`arrival_departure_df`) — included service reliability metrics such as headway, scheduled headway, and earliness (deviation from schedule) for each route and stop. -->
+- **Survey Data** 
+<!-- (`survey_df`) — summarized rider demographics and behaviors, including income levels, racial/ethnic background, and travel characteristics, aggregated by route reporting group. -->
 
 From the ridership and arrival–departure datasets, we constructed **route-level operational feature vectors**.  
 For each route, the following aggregated statistics were computed:
@@ -221,7 +315,7 @@ Finally, the distributions were visualized via grouped bar charts comparing prop
 
 ---
 
-## **Preliminary Results**
+## **4. Preliminary Results**
 
 - **Cluster Formation:**  
   The K-Means model identified three distinct clusters (`K=3`) as optimal based on silhouette analysis.  
