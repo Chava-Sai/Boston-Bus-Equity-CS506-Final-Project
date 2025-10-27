@@ -94,7 +94,7 @@ This heatmap compares lateness percentages across multiple years for the 20 rout
 
 The data processing workflow was designed to clean, standardize, and align three large datasets from the Massachusetts Bay Transportation Authority (MBTA): the ridership data, the arrival–departure time data, and the 2024 system-wide passenger survey. The goal was to prepare a unified, high-quality dataset suitable for downstream modeling and clustering analysis.
 
----
+
 
 ### **I. Data Loading**
 
@@ -105,7 +105,7 @@ Three primary sources were used in this project.
 
 Because of the large file sizes, each dataset was partially loaded (up to 30 million rows) to balance memory efficiency and coverage. The data was read using the pandas and PyArrow libraries, with all three dataframes printed and inspected to verify structure, column types, and consistency of key identifiers.
 
----
+
 
 ### **II. Route ID Normalization**
 
@@ -113,7 +113,7 @@ Each dataset represented MBTA routes in slightly different ways — for instance
 
 New normalized columns (such as `route_id_norm`) were created to store these standardized identifiers while keeping the raw data intact. This step was critical for accurate merging and comparison later in the pipeline.
 
----
+
 
 ### **III. Correction of Route Naming Errors**
 
@@ -125,7 +125,7 @@ Unique route sets were then extracted from each dataset, and the intersections a
 
 This comparison provided an early check on coverage and revealed a manageable overlap suitable for merging.
 
----
+
 
 ### **IV. Handling Multi-Route Entries in the Survey Data**
 
@@ -133,7 +133,7 @@ In the survey data, certain responses were grouped under combined route identifi
 
 A regular expression pattern was developed to extract valid route codes (covering both numeric and alphanumeric patterns like `"SL1"`, `"CT2"`, and `"34E"`). Each multi-route entry was expanded into a Python list (for example, `"114&116&117"` became `["114", "116", "117"]`). The survey dataframe was then exploded so that each individual route received its own row. This ensured that demographic information could be accurately mapped to specific route identifiers.
 
----
+
 
 ### **V. Data Cleaning and Filtering**
 
@@ -141,7 +141,7 @@ Invalid or empty route entries were removed from the survey dataframe to maintai
 
 The datasets were capped at a maximum of 30 million records each to prevent excessive memory usage. This cap was sufficient to capture all relevant data while ensuring smooth processing.
 
----
+
 
 ### **VI. Efficient Slicing and Indexing**
 
@@ -154,7 +154,7 @@ Three masks were created:
 
 These masks identified rows associated with route IDs present in the intersection of all datasets. Using this approach, only relevant rows were retained, significantly reducing the size of the working data.
 
----
+
 
 ### **VII. Final Output Generation and Cleaned Data Summary**
 
@@ -172,7 +172,7 @@ All three datasets now share a **standardized route ID system**, ensuring full c
 - `ridership.csv` — aggregated route-level boardings, alightings, and load data.  
 - `survey.csv` — demographic and behavioral insights linked to valid routes.
 
----
+
 
 ### **VIII. Key Outcomes of Data Processing**
 
@@ -186,7 +186,7 @@ By standardizing route identifiers, correcting inconsistencies, expanding multi-
 
 Our goal was to explore whether operational and ridership characteristics of MBTA bus routes exhibit natural groupings and, subsequently, whether those groups correlate with demographic or socioeconomic patterns derived from the MBTA passenger survey data.
 
----
+
 
 ### I. Feature Construction
 Three datasets were used:
@@ -203,13 +203,13 @@ For each route, the following aggregated statistics were computed:
 
 These features were merged into a single dataframe (`route_feat`), forming the analytical basis for clustering.
 
----
+
 
 ### II. Data Standardization
 All numeric features were standardized using **z-score normalization** via `StandardScaler` from scikit-learn.  
 This ensured that variables with different scales (e.g., “headway_mean” in minutes vs. “boardings_mean” in passenger counts) contributed equally to the clustering process.
 
----
+
 
 ### III. Clustering Approach
 
@@ -246,7 +246,7 @@ In addition to K-Means, we applied **agglomerative hierarchical clustering** to 
 <img width="700" height="300" alt="Hierarchical cluster - pca projection" src="https://github.com/user-attachments/assets/dfc062ae-dbd2-4e3c-8475-95fc31c2a671" />
 
 <br><br>
----
+
 
 ### IV. Demographic Correlation Analysis
 To examine potential relationships between operational clusters and rider demographics:
@@ -258,7 +258,7 @@ To examine potential relationships between operational clusters and rider demogr
 - These tables were merged with cluster assignments (from both K-Means and Hierarchical Clustering) to evaluate demographic composition per cluster.  
 - The results were visualized as **grouped bar charts** comparing proportions of income and ethnicity categories across clusters.
 
----
+
 
 ### V. Preliminary Results
 
