@@ -2,6 +2,32 @@
 
 [![BU Spark!](https://img.shields.io/badge/BU%20Spark!-Project-red.svg)]()
 
+## Reproducing the Results
+### a. Download the Dataset
+The cleaned dataset used for this analysis is hosted on Kaggle.
+
+* **Kaggle Dataset:** [Boston MBTA Bus Equity and Reliability Dataset](https://www.kaggle.com/datasets/manaswiyadamreddy/boston-mbta-bus-equity-and-reliability-dataset/data)
+
+### b. Set Up the Project Directory
+1.  From the Kaggle link, download the files from the `data_cleaned_capped` directory.
+2.  In the root of this project repository, create a folder named `data_cleaned_capped`.
+3.  Place the downloaded data files (e.g., `arrival_departure.parquet`, `ridership.csv`, `survey.csv`) directly into this `data_cleaned_capped` folder.
+
+The final project structure should look like this:
+
+Boston-Bus-Equity-CS506-Final-Project/
+├── data_cleaned_capped/
+│   ├── arrival_departure.parquet
+│   ├── ridership.csv
+│   └── survey.csv
+├── notebooks/clustering/
+│   ├── clustering.ipynb
+│   └── hierarchical_clustering.ipynb
+└── README.md
+
+### c. Run the Analysis Notebooks
+All clustering analysis is conducted within Jupyter Notebooks located in the `clustering/` directory.
+
 # Mid-term Report
 
 ## Table of Contents
