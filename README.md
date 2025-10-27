@@ -160,4 +160,104 @@ This heatmap compares lateness percentages across multiple years for the 20 rout
 
 <img width="1318" height="820" alt="late rate percentage by route vs year (worst 20 routes overall)" src="https://github.com/user-attachments/assets/13cccbd7-9bd6-4fa7-ad54-be0c847176a6" />
 
+<br><br>
+
+---
+
+## 3. Data Modeling Methods
+
+- ### K-Means Variants
+
 <br>
+
+This line chart compares silhouette scores across different numbers of clusters (K = 2–6) for both standard k-means and k-means++ initializations.
+It helps identify the optimal cluster count and shows which initialization method provides better-defined groupings of bus routes based on lateness and delay behavior.
+
+<br>
+
+<img width="1180" height="700" alt="Silhouette vs K" src="https://github.com/user-attachments/assets/001020bf-51ef-4d51-9733-259d04209140" />
+
+<br><br><br>
+
+- ### DBSCAN
+
+<br>
+
+This heatmap visualizes DBSCAN clustering performance for various combinations of eps and min_samples parameters.
+Each cell’s color indicates the silhouette score, allowing quick assessment of how clustering quality changes with different neighborhood sizes and density thresholds.
+
+<br>
+
+<img width="902" height="556" alt="DBSCAN Silhouette heatmap" src="https://github.com/user-attachments/assets/41910437-e8ff-4a1d-a73a-e1e7306ea6bb" />
+
+<br><br><br>
+
+- ### Cluster Scatter Plots for Best Models
+
+<br>
+
+For each clustering method, this scatter plot displays routes grouped into clusters using their late rate (%) and average delay (minutes).
+Clusters are color-coded and labeled from Low to High lateness, illustrating how routes naturally group based on punctuality and delay severity.
+
+<br>
+
+<img width="1180" height="700" alt="K means" src="https://github.com/user-attachments/assets/d3aa001a-5bea-458f-816e-da61174ad36e" />
+
+<br><br>
+
+<img width="1180" height="700" alt="K means ++" src="https://github.com/user-attachments/assets/f587d702-113f-4cc0-b686-71943fafe16e" />
+
+<br><br>
+
+<img width="1180" height="700" alt="DBSCAN" src="https://github.com/user-attachments/assets/9ab19890-89df-4036-84f8-fcfcc5f60e09" />
+
+<br><br><br>
+
+- ### Cluster Size Distribution per Method
+
+<br>
+
+These bar charts show the number of routes within each cluster for the best-performing model of each method (k-means, k-means++, and DBSCAN).
+They provide insight into cluster balance, helping assess whether certain clusters dominate or if the segmentation is evenly distributed.
+
+<br>
+
+<img width="820" height="460" alt="Kmeans cluster size" src="https://github.com/user-attachments/assets/a40cac60-2c2f-494b-92a1-f48d32305ae1" />
+
+<br>
+
+<img width="820" height="460" alt="K means ++ cluster size" src="https://github.com/user-attachments/assets/0b9e20c9-bc43-48f0-85b8-d125d9db024d" />
+
+<br>
+
+<img width="820" height="460" alt="DBSCAN cluster size" src="https://github.com/user-attachments/assets/ad61d2e2-8573-4564-8d9d-afdaa0419ae6" />
+
+<br><br><br>
+
+- ### Overall Best Clustering Model (Highest Silhouette Score)
+
+<br>
+
+This final scatter plot visualizes the globally best clustering configuration across all tested models and parameters.
+It highlights how routes are separated in lateness–delay space under the most effective model, representing the clearest and most meaningful route groupings in the analysis.
+
+<br>
+
+<img width="1255" height="700" alt="Overall Best - DBSCAN" src="https://github.com/user-attachments/assets/6271eb8b-ff54-453c-8899-6e3979e28d71" />
+
+<br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
