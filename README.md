@@ -24,11 +24,7 @@ The final project structure should look like this:
 │   ├── clustering.ipynb
 │   └── hierarchical_clustering.ipynb
 └── README.md -->
-<br>
 <img width="603" height="208" alt="Screenshot 2025-10-27 at 5 10 39 PM" src="https://github.com/user-attachments/assets/5a663047-fac7-413b-ac74-597445d1f62a" />
-<br>
-
-
 
 ### c. Run the Analysis Notebooks
 All clustering analysis is conducted within Jupyter Notebooks located in the `clustering/` directory.
