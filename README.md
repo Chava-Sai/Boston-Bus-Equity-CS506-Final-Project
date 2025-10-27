@@ -222,11 +222,11 @@ We applied **two unsupervised clustering methods**: **K-Means and Hierarchical C
 - A **PCA projection** (2D scatter plot) was used to visualize separability and density among clusters.
 <br>
 
-<img width="700" height="300" alt="Silhoutte vs K" src="https://github.com/user-attachments/assets/e54b226d-b0cc-4fc8-8c55-2e75f1d6e807" />
+<img width="900" height="600" alt="Silhoutte vs K" src="https://github.com/user-attachments/assets/e54b226d-b0cc-4fc8-8c55-2e75f1d6e807" />
 
 <br><br>
 
-<img width="700" height="300" alt="K means cluster" src="https://github.com/user-attachments/assets/5befc26d-9a0d-40f3-9fbb-e8e6b4cc0cf4" />
+<img width="900" height="600" alt="K means cluster" src="https://github.com/user-attachments/assets/5befc26d-9a0d-40f3-9fbb-e8e6b4cc0cf4" />
 
 <br><br>
 
