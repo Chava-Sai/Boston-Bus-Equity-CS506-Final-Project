@@ -166,7 +166,7 @@ This heatmap compares lateness percentages across multiple years for the 20 rout
 
 ## 3. Data Modeling Methods
 
-- ### K-Means Variants
+<!-- - ### K-Means Variants
 
 <br>
 
@@ -245,59 +245,8 @@ It highlights how routes are separated in lateness–delay space under the most 
 
 <img width="1255" height="700" alt="Overall Best - DBSCAN" src="https://github.com/user-attachments/assets/6271eb8b-ff54-453c-8899-6e3979e28d71" />
 
-<br><br><br><br>
+<br> -->
 
-## Year-Wise Clustering of Route Lateness and Delay Patterns (Analyzing yearly changes in route behavior and clustering quality across K-Means and DBSCAN methods.)
 
-<br>
 
-- ### Best Clustering Quality per Year (Silhouette Scores)
 
-<br>
-
-This bar chart shows the highest silhouette score achieved each year, summarizing the best-performing clustering method and parameters for that year.
-It provides a quick comparison of how well bus routes naturally clustered (based on lateness and delay) over time and helps identify years with clearer or weaker group separation.
-
-<br>
-
-<img width="1180" height="580" alt="Best Silhoutee per year" src="https://github.com/user-attachments/assets/b7bef788-802e-4960-922c-7b6ab9703b71" />
-
-<br>
-
-- ### Route Clusters for the Latest Year — Best Models by Method
-
-<br>
-
-These scatter plots visualize how routes grouped in the most recent year under each best-performing method:
-- K-Means (Random Initialization)
-- K-Means++ (Improved Initialization)
-- DBSCAN (Density-Based)
-Each route is plotted by its lateness rate (%) and average delay (minutes), color-coded by cluster (Low, Mid, High lateness).
-These visuals show how each algorithm partitions routes according to performance.
-
-<br>
-
-<img width="1180" height="700" alt="K means - 2025" src="https://github.com/user-attachments/assets/564d4c03-7e66-4a76-95e6-9bf6e7280a0c" />
-
-<br>
-
-<img width="1180" height="700" alt="K means ++ - 2025" src="https://github.com/user-attachments/assets/c37a4b81-bb2a-4226-ac34-2fc1f40effb4" />
-
-<br>
-
-<img width="1180" height="700" alt="DBSCAN - 2025" src="https://github.com/user-attachments/assets/577c72a4-168a-46e1-b11d-1e8213f791b4" />
-
-<br><br><br>
-
-- ### DBSCAN Parameter Sensitivity (Heatmap for Latest Year)
-
-<br>
-
-This heatmap evaluates DBSCAN’s silhouette scores across combinations of eps and min_samples for the latest year.
-It reveals which parameter settings yield the most coherent clusters, guiding fine-tuning for density-based segmentation.
-
-<br>
-
-<img width="914" height="556" alt="DBSCAN Silhouette - 2025" src="https://github.com/user-attachments/assets/15c6b9a4-7dfb-4cd7-a33a-90a08e5152ae" />
-
-<br><br><br>
