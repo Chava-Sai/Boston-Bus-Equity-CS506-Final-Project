@@ -60,7 +60,7 @@ This horizontal bar chart highlights the top 15 bus routes with the highest perc
 
 <br>
 
-<img width="1175" height="700" alt="Most late routes in 2025 (late by more than 5 mins)" src="https://github.com/user-attachments/assets/4613c31a-e987-41d8-896c-01c4262fc094" />
+<img width="700" height="300" alt="Most late routes in 2025 (late by more than 5 mins)" src="https://github.com/user-attachments/assets/4613c31a-e987-41d8-896c-01c4262fc094" />
 
 <br><br>
 
@@ -239,11 +239,11 @@ In addition to K-Means, we applied **agglomerative hierarchical clustering** to 
 
 <br>
 
-<img width="700" height="300" alt="Hierarchical cluster dendogram" src="https://github.com/user-attachments/assets/db004e42-19bd-4797-a75c-32e8fe97a581" />
+<img width="900" height="600" alt="Hierarchical cluster dendogram" src="https://github.com/user-attachments/assets/db004e42-19bd-4797-a75c-32e8fe97a581" />
 
 <br><br>
 
-<img width="700" height="300" alt="Hierarchical cluster - pca projection" src="https://github.com/user-attachments/assets/dfc062ae-dbd2-4e3c-8475-95fc31c2a671" />
+<img width="900" height="600" alt="Hierarchical cluster - pca projection" src="https://github.com/user-attachments/assets/dfc062ae-dbd2-4e3c-8475-95fc31c2a671" />
 
 <br><br>
 
@@ -284,7 +284,7 @@ Income and ethnicity proportions remained largely similar across all clusters, w
 
 <br>
 
-<img width="700" height="300" alt="Income dis per cluster" src="https://github.com/user-attachments/assets/bedf63c8-8b48-4a68-a76f-2f339bf15ca3" />
+<img width="900" height="600" alt="Income dis per cluster" src="https://github.com/user-attachments/assets/bedf63c8-8b48-4a68-a76f-2f339bf15ca3" />
 
 <br><br>
 
@@ -292,7 +292,7 @@ Income and ethnicity proportions remained largely similar across all clusters, w
 
 <br>
 
-<img width="700" height="300" alt="Ethnicity dis per cluster" src="https://github.com/user-attachments/assets/073c28fd-0141-4d1f-954b-7e7a86bf03a5" />
+<img width="900" height="600" alt="Ethnicity dis per cluster" src="https://github.com/user-attachments/assets/073c28fd-0141-4d1f-954b-7e7a86bf03a5" />
 
 <br><br>
 
@@ -300,11 +300,11 @@ Income and ethnicity proportions remained largely similar across all clusters, w
 
 <br>
 
-<img width="1089" height="590" alt="Income dis per hierarchical cluster" src="https://github.com/user-attachments/assets/00a73f29-4dad-4b70-a6d4-91a6edb5548b" />
+<img width="900" height="600" alt="Income dis per hierarchical cluster" src="https://github.com/user-attachments/assets/00a73f29-4dad-4b70-a6d4-91a6edb5548b" />
 
 <br><br>
 ### Ethnicity Distribution obtained from Hierarchical Clustering
-<img width="700" height="300" alt="Ethnicity dis per hierarchical cluster" src="https://github.com/user-attachments/assets/08041fef-5666-4da6-b634-58ed6c2bddb8" />
+<img width="900" height="600" alt="Ethnicity dis per hierarchical cluster" src="https://github.com/user-attachments/assets/08041fef-5666-4da6-b634-58ed6c2bddb8" />
 
 <br><br>
 
