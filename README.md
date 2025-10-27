@@ -223,6 +223,15 @@ We applied **two unsupervised clustering methods**: **K-Means and Hierarchical C
 - The optimal *K=3* was selected for achieving the best balance between compactness and separation.
 - The final model assigned a **cluster label** to each route and computed **centroids** in both scaled and original feature spaces.  
 - A **PCA projection** (2D scatter plot) was used to visualize separability and density among clusters.
+<br>
+
+<img width="700" height="468" alt="Silhoutte vs K" src="https://github.com/user-attachments/assets/e54b226d-b0cc-4fc8-8c55-2e75f1d6e807" />
+
+<br><br>
+
+<img width="689" height="545" alt="K means cluster" src="https://github.com/user-attachments/assets/5befc26d-9a0d-40f3-9fbb-e8e6b4cc0cf4" />
+
+<br><br><br>
 
 #### **Hierarchical Clustering**
 In addition to K-Means, we applied **agglomerative hierarchical clustering** to validate and compare the natural structure of route groupings.  
@@ -231,6 +240,15 @@ In addition to K-Means, we applied **agglomerative hierarchical clustering** to 
 - The cluster memberships from hierarchical clustering were compared to those from K-Means to assess **consistency and stability** of grouping patterns.
 - Both approaches produced largely overlapping route clusters, confirming that the primary segmentation was robust to the choice of clustering algorithm.
 
+<br>
+
+<img width="1189" height="590" alt="Hierarchical cluster dendogram" src="https://github.com/user-attachments/assets/db004e42-19bd-4797-a75c-32e8fe97a581" />
+
+<br><br>
+
+<img width="689" height="545" alt="Hierarchical cluster - pca projection" src="https://github.com/user-attachments/assets/dfc062ae-dbd2-4e3c-8475-95fc31c2a671" />
+
+<br><br><br>
 ---
 
 ### 4. Demographic Correlation Analysis
@@ -262,6 +280,24 @@ Cluster boundaries were not strongly distinct, suggesting that current feature c
 **Demographic Correlation:**  
 No strong or systematic correlation was observed between route clusters and demographic distributions.  
 Income and ethnicity proportions remained largely similar across all clusters, with only minor variations.
+
+<br>
+
+<img width="989" height="590" alt="Income dis per cluster" src="https://github.com/user-attachments/assets/bedf63c8-8b48-4a68-a76f-2f339bf15ca3" />
+
+<br><br>
+
+<img width="990" height="590" alt="Ethnicity dis per cluster" src="https://github.com/user-attachments/assets/073c28fd-0141-4d1f-954b-7e7a86bf03a5" />
+
+<br><br>
+
+<img width="1089" height="590" alt="Income dis per hierarchical cluster" src="https://github.com/user-attachments/assets/00a73f29-4dad-4b70-a6d4-91a6edb5548b" />\\
+
+<br><br>
+
+<img width="1089" height="590" alt="Ethnicity dis per hierarchical cluster" src="https://github.com/user-attachments/assets/2e6ec0c2-f2bd-4501-a241-42891198d1dd" />
+
+<br><br>
 
 **Preliminary Insight:**  
 Overall, the clustering results did not reveal clear or promising patterns.  
