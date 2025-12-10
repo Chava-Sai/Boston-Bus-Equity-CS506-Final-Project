@@ -61,6 +61,19 @@ The final project structure should look like this:
 
 ### . Run the Analysis Notebooks
 All clustering analysis is conducted within Jupyter Notebooks located in the `clustering/` directory.
+# Mid-term Report
+
+## Project Scope and Operational Metrics
+
+This project is designed primarily as an equity and reliability analysis of MBTA bus service, rather than a full operational performance dashboard. Using three integrated datasets—ridership, arrival–departure records, and passenger survey data—we focus on how bus lateness is distributed across the city and how that distribution relates to neighborhood demographics, particularly race.
+
+Ridership data from 2016–2024 are incorporated to build route-level features such as mean and median boardings, alightings, and passenger load. These aggregated statistics help describe how intensively each route is used and support downstream analyses, but the report does not present detailed ridership time series for individual routes. In particular, changes in ridership from pre-pandemic to post-pandemic periods are not separately summarized; they remain implicit in the historical data rather than highlighted as explicit trend plots or tables.
+
+The temporal richness of the GTFS and arrival–departure data would allow reconstruction of end-to-end travel times for each trip on each route. However, the analysis here emphasizes service regularity and punctuality instead of full origin–destination travel times. We work primarily with headways, scheduled times, and measures of earliness and lateness at stops, and we identify routes and stops with systematically higher delay, rather than reporting average end-to-end travel durations for every line.
+
+Passenger experience is examined through the lens of scheduled headways, distributions of arrival delays, and derived on-time performance rates (for example, the share of trips arriving within a short window of their scheduled time). We do not translate these service-side metrics into explicit estimates of average rider wait time, and we do not distinguish between the typical wait when buses run on schedule and the additional wait induced by delays. As a result, wait time appears indirectly through headways and delays, rather than as a standalone quantity.
+
+At the system level, lateness is characterized by full delay distributions, route-level late-arrival rates, and identification of the worst-performing routes and stops. The report does not compress these patterns into a single global figure such as “average delay across all routes,” preferring instead to show how delays vary across space and demographics. Likewise, while particular bus lines (including important routes such as 22, 29, 15, 45, 28, 44, and 42) may appear among the worst performers in our visualizations, they are treated within the broader set of routes rather than receiving individual operational profiles or dedicated average-delay summaries. Producing such targeted statistics is feasible with the cleaned datasets, but lies beyond the equity-centered scope of this mid-term analysis.
 
 # Mid-term Report
 
