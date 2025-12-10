@@ -337,6 +337,46 @@ This ensured that variables with different scales (e.g., “headway_mean” in m
 ## 4. Final Results
 *(new stuff begins here)*
 
+### 4.1 Pre and Post-Pandemic Analysis
+
+#### **Overarching question:** How did ridership change before and after the pandemic, across routes, stops, and time periods?
+- **Did average ridership drop after COVID-19?**
+- **Which routes were most affected? Which were least affected?**
+- **Which routes had a high recovery rate post-pandemic? Which had the least recovery?**
+
+Bus ridership and average load were relatively stable between 2016 and 2019. Both metrics experienced a sharp decline in 2020, coinciding with the pandemic's onset. Following this, both ridership and average load began to recover, showing a clear upward trend from 2021 onwards. However, as of 2024, neither metric has fully returned to pre-pandemic levels, illustrating the significant and lasting impact of the pandemic on public transit usage in Boston.
+
+
+<img width="600"  alt="{E07ED614-B209-4CEB-B644-B341FE280F4D}" src="https://github.com/user-attachments/assets/acfafc2a-7686-4aa1-af1f-773570a25f38" />
+
+Across all time periods, average onboardings decreased following the pandemic. The most pronounced declines can be seen during PM PEAK, AM PEAK, MIDDAY SCHOOL, and EVENING periods. Even during traditionally busy periods such as the morning (AM PEAK) and afternoon (PM PEAK) commute times, post-pandemic ridership remains noticeably lower than pre-pandemic levels.
+
+<img width="600"  alt="{C95F8121-CB41-4CF8-B7D8-494FE5B746C0}" src="https://github.com/user-attachments/assets/2a022618-9a4c-48eb-9cf9-8e1fe837d65b" />
+
+Looks like the 11 least affected routes have actually increased in ridership after the pandemic. Possible reasons could be an error in the data(outliers) or actual travel pattern shifts. Eg. routes serving residential or suburban areas might see more use as remote workers commute locally. 
+
+<table>
+  <tr>
+<td><img width="600" alt="{99508320-908F-4D2A-A831-69BEF316EA66}" src="https://github.com/user-attachments/assets/81e74b1b-df0e-4bc2-a7b8-c0bcb307a436" /></td>
+<td><img width="600" alt="{79A769CB-AD1B-4CF4-B271-1BBE81B42BF0}" src="https://github.com/user-attachments/assets/6a740034-43e4-4101-b766-6fb214106742" /></td>
+  </tr>
+</table>
+
+
+Overall, the figure highlights significant variation in ridership recovery across routes, with some routes rebounding strongly while others continue to lag behind, illustrating the uneven impact of the pandemic on different parts of Boston’s bus network.
+
+<table>
+<tr>
+<td><img width="1232" height="490" alt="{A3F2AC0F-39A9-403E-B3CD-CFBC4DF9DDAE}" src="https://github.com/user-attachments/assets/6c38b2ec-fb03-45a3-bcc8-da6813ccb1ab" /></td>
+<td><img width="1223" height="503" alt="{A9E936AE-212E-4B0B-8E25-9780B574580E}" src="https://github.com/user-attachments/assets/a62abdf6-6862-4e9e-ad29-ffa77f7d378c" /></td>
+  </tr>
+</table>
+
+- **Statistical Analysis Report**: A t-test was conducted to compare the average bus loads before and after the pandemic. The results ($t = 209.57$, $p < 0.001$) indicate a statistically significant difference between the pre-pandemic and post-pandemic average load values. The extremely low p-value confirms that the change in average bus load observed between these two periods is unlikely to be due to random chance, providing strong evidence that the pandemic had a significant and lasting effect on bus ridership loads in Boston.
+
+
+
+### 4.2 Bus Equity Analysis
 The final results of the analysis show clear and measurable disparities in MBTA lateness across different demographic areas of Boston. Routes that serve neighborhoods with higher proportions of non-white residents tend to exhibit higher average lateness, while routes operating primarily in predominantly white neighborhoods generally show lower delays. These patterns are consistent at both the stop and route levels.
 
 <table>
