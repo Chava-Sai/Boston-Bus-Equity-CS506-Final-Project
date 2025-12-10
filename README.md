@@ -350,7 +350,7 @@ This ensured that variables with different scales (e.g., “headway_mean” in m
 
 ### 4.1 Pre and Post-Pandemic Analysis
 
-#### **Overarching question:** How did ridership change before and after the pandemic, across routes, stops, and time periods?
+#### **Overarching question:** How did ridership change before and after the pandemic, across routes, and time periods?
 - **Did average ridership drop after COVID-19?**
 - **Which routes were most affected? Which were least affected?**
 - **Which routes had a high recovery rate post-pandemic? Which had the least recovery?**
