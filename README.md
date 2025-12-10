@@ -424,61 +424,6 @@ Overall, the analysis demonstrates that lateness is unevenly distributed across 
 
 
 
-
-**Cluster Formation:**  
-K-Means identified **three** operationally distinct route groups, while Hierarchical Clustering revealed **four clusters**, indicating possible sub-patterns in route characteristics.
-
-- **Cluster 1:** High passenger load and short headways — dense, high-frequency urban routes.  
-- **Cluster 2:** Moderate load and balanced headways — regular city routes with steady ridership.  
-- **Cluster 3:** Longer headways and lower passenger counts — typically suburban or low-demand routes.  
-- **Cluster 4 (Hierarchical-only):** Transitional or hybrid routes showing moderate ridership but higher variability in headway and punctuality metrics.
-
-**Visualization:**  
-The **PCA scatter plot** and **dendrogram** showed partial separation between clusters, though overlaps were frequent.  
-Cluster boundaries were not strongly distinct, suggesting that current feature combinations may not fully capture the underlying differences in route performance.
-
-**Demographic Correlation:**  
-No strong or systematic correlation was observed between route clusters and demographic distributions.  
-Income and ethnicity proportions remained largely similar across all clusters, with only minor variations.
-
-<br>
-
-### Income Distribution obtained from K means
-
-<br>
-
-<img width="900" height="600" alt="Income dis per cluster" src="https://github.com/user-attachments/assets/bedf63c8-8b48-4a68-a76f-2f339bf15ca3" />
-
-<br><br>
-
-### Ethnicity Distribution obtained from K means
-
-<br>
-
-<img width="900" height="600" alt="Ethnicity dis per cluster" src="https://github.com/user-attachments/assets/073c28fd-0141-4d1f-954b-7e7a86bf03a5" />
-
-<br><br>
-
-### Income Distribution obtained from Hierarchical Clustering
-
-<br>
-
-<img width="900" height="600" alt="Income dis per hierarchical cluster" src="https://github.com/user-attachments/assets/00a73f29-4dad-4b70-a6d4-91a6edb5548b" />
-
-<br><br>
-### Ethnicity Distribution obtained from Hierarchical Clustering
-<img width="900" height="600" alt="Ethnicity dis per hierarchical cluster" src="https://github.com/user-attachments/assets/08041fef-5666-4da6-b634-58ed6c2bddb8" />
-
-<br><br>
-
-**Preliminary Insight:**  
-Overall, the clustering results did not reveal clear or promising patterns.  
-This suggests the need for **improved feature extraction**, potentially incorporating additional operational metrics (e.g., temporal demand variation, stop-level reliability) or refining existing ones to better represent the behavioral and service-level diversity among MBTA routes.
-
-
-
-
-
 REMOVED STUFF
 
 
