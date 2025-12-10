@@ -8,12 +8,35 @@
 
 
 ## Reproducing the Results
-### a. Download the Dataset
+### a. Clone and Install Dependencies
+
+```bash
+git clone https://github.com/Chava-Sai/Boston-Bus-Equity-CS506-Final-Project.git
+cd Boston-Bus-Equity-CS506-Final-Project
+
+make install
+
+```
+
+For Windows:
+
+```bash
+.venv\Scripts\activate
+
+```
+For Mac/Linux
+
+```bash
+source .venv/bin/activate
+```
+
+
+### b. Download the Dataset
 The cleaned dataset used for this analysis is hosted on Kaggle.
 
 * **Kaggle Dataset:** [Boston MBTA Bus Equity and Reliability Dataset](https://www.kaggle.com/datasets/manaswiyadamreddy/boston-mbta-bus-equity-and-reliability-dataset/data)
 
-### b. Set Up the Project Directory
+### c. Set Up the Project Directory
 1.  From the Kaggle link, download the files from the `data_cleaned_capped` directory.
 2.  In the root of this project repository, create a folder named `data_cleaned_capped`.
 3.  Place the downloaded data files (e.g., `arrival_departure.parquet`, `ridership.csv`, `survey.csv`) directly into this `data_cleaned_capped` folder.
@@ -23,8 +46,9 @@ The final project structure should look like this:
 <!-- Boston-Bus-Equity-CS506-Final-Project/
 ├── data/
 │   ├── MBTA_GTFS/
-│   ├── ACS_Race/
-│   └── census_shapefiles/
+│   ├── MBTA_Bus_Parquet
+│   ├── tl_2024_25_tract/
+│   └── B03002/
 ├── data_cleaned_capped/
 │   ├── arrival_departure.parquet
 │   ├── ridership.csv
@@ -35,7 +59,7 @@ The final project structure should look like this:
 └── README.md -->
 <img width="603" height="208" alt="Screenshot 2025-10-27 at 5 10 39 PM" src="https://github.com/user-attachments/assets/5a663047-fac7-413b-ac74-597445d1f62a" />
 
-### c. Run the Analysis Notebooks
+### . Run the Analysis Notebooks
 All clustering analysis is conducted within Jupyter Notebooks located in the `clustering/` directory.
 
 # Mid-term Report
