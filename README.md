@@ -311,55 +311,6 @@ This ensured that variables with different scales (e.g., “headway_mean” in m
 
 
 
-### III. Clustering Approach
-
-We applied **two unsupervised clustering methods**: **K-Means and Hierarchical Clustering** to identify homogeneous groups of routes based on their operational characteristics.
-
-#### **K-Means Clustering**
-- The number of clusters (*K*) was optimized by computing **silhouette scores** for values from 2 to 8.  
-- The optimal *K=3* was selected for achieving the best balance between compactness and separation.
-- The final model assigned a **cluster label** to each route and computed **centroids** in both scaled and original feature spaces.  
-- A **PCA projection** (2D scatter plot) was used to visualize separability and density among clusters.
-<br>
-
-<img width="900" height="600" alt="Silhoutte vs K" src="https://github.com/user-attachments/assets/e54b226d-b0cc-4fc8-8c55-2e75f1d6e807" />
-
-<br><br>
-
-<img width="900" height="600" alt="K means cluster" src="https://github.com/user-attachments/assets/5befc26d-9a0d-40f3-9fbb-e8e6b4cc0cf4" />
-
-<br><br>
-
-#### **Hierarchical Clustering**
-In addition to K-Means, we applied **agglomerative hierarchical clustering** to validate and compare the natural structure of route groupings.  
-- Using the **Ward linkage** method (which minimizes within-cluster variance), we constructed a **dendrogram** illustrating the hierarchical relationships among routes.  
-- Based on the dendrogram inspection and inconsistency coefficients, we cut the hierarchy into **4 major clusters**.  
-- The cluster memberships from hierarchical clustering were compared to those from K-Means to assess **consistency and stability** of grouping patterns.
-- Both approaches produced largely overlapping route clusters, confirming that the primary segmentation was robust to the choice of clustering algorithm.
-
-<br>
-
-<img width="900" height="600" alt="Hierarchical cluster dendogram" src="https://github.com/user-attachments/assets/db004e42-19bd-4797-a75c-32e8fe97a581" />
-
-<br><br>
-
-<img width="900" height="600" alt="Hierarchical cluster - pca projection" src="https://github.com/user-attachments/assets/dfc062ae-dbd2-4e3c-8475-95fc31c2a671" />
-
-<br><br>
-
-
-### IV. Demographic Correlation Analysis
-To examine potential relationships between operational clusters and rider demographics:
-
-- The **survey_df** was transformed into a long-form dataset (`survey_long`), exploding route arrays (e.g., `['114', '116', '117']`) into individual rows.  
-- Routes were normalized to consistent identifiers (e.g., “1”, “34E”, “SL4”).  
-- From `survey_long`, income-related and ethnicity-related categories were isolated using keyword-based filters.  
-- For each demographic subset, **pivot tables (route × category)** were computed to capture mean weighted proportions, normalized to represent percentage distributions.  
-- These tables were merged with cluster assignments (from both K-Means and Hierarchical Clustering) to evaluate demographic composition per cluster.  
-- The results were visualized as **grouped bar charts** comparing proportions of income and ethnicity categories across clusters.
-
-
-
 ### V. Final Results
 *(new stuff begins here)*
 
@@ -524,6 +475,59 @@ Income and ethnicity proportions remained largely similar across all clusters, w
 Overall, the clustering results did not reveal clear or promising patterns.  
 This suggests the need for **improved feature extraction**, potentially incorporating additional operational metrics (e.g., temporal demand variation, stop-level reliability) or refining existing ones to better represent the behavioral and service-level diversity among MBTA routes.
 
+
+
+
+
+REMOVED STUFF
+
+
+### III. Clustering Approach
+
+We applied **two unsupervised clustering methods**: **K-Means and Hierarchical Clustering** to identify homogeneous groups of routes based on their operational characteristics.
+
+#### **K-Means Clustering**
+- The number of clusters (*K*) was optimized by computing **silhouette scores** for values from 2 to 8.  
+- The optimal *K=3* was selected for achieving the best balance between compactness and separation.
+- The final model assigned a **cluster label** to each route and computed **centroids** in both scaled and original feature spaces.  
+- A **PCA projection** (2D scatter plot) was used to visualize separability and density among clusters.
+<br>
+
+<img width="900" height="600" alt="Silhoutte vs K" src="https://github.com/user-attachments/assets/e54b226d-b0cc-4fc8-8c55-2e75f1d6e807" />
+
+<br><br>
+
+<img width="900" height="600" alt="K means cluster" src="https://github.com/user-attachments/assets/5befc26d-9a0d-40f3-9fbb-e8e6b4cc0cf4" />
+
+<br><br>
+
+#### **Hierarchical Clustering**
+In addition to K-Means, we applied **agglomerative hierarchical clustering** to validate and compare the natural structure of route groupings.  
+- Using the **Ward linkage** method (which minimizes within-cluster variance), we constructed a **dendrogram** illustrating the hierarchical relationships among routes.  
+- Based on the dendrogram inspection and inconsistency coefficients, we cut the hierarchy into **4 major clusters**.  
+- The cluster memberships from hierarchical clustering were compared to those from K-Means to assess **consistency and stability** of grouping patterns.
+- Both approaches produced largely overlapping route clusters, confirming that the primary segmentation was robust to the choice of clustering algorithm.
+
+<br>
+
+<img width="900" height="600" alt="Hierarchical cluster dendogram" src="https://github.com/user-attachments/assets/db004e42-19bd-4797-a75c-32e8fe97a581" />
+
+<br><br>
+
+<img width="900" height="600" alt="Hierarchical cluster - pca projection" src="https://github.com/user-attachments/assets/dfc062ae-dbd2-4e3c-8475-95fc31c2a671" />
+
+<br><br>
+
+
+### IV. Demographic Correlation Analysis
+To examine potential relationships between operational clusters and rider demographics:
+
+- The **survey_df** was transformed into a long-form dataset (`survey_long`), exploding route arrays (e.g., `['114', '116', '117']`) into individual rows.  
+- Routes were normalized to consistent identifiers (e.g., “1”, “34E”, “SL4”).  
+- From `survey_long`, income-related and ethnicity-related categories were isolated using keyword-based filters.  
+- For each demographic subset, **pivot tables (route × category)** were computed to capture mean weighted proportions, normalized to represent percentage distributions.  
+- These tables were merged with cluster assignments (from both K-Means and Hierarchical Clustering) to evaluate demographic composition per cluster.  
+- The results were visualized as **grouped bar charts** comparing proportions of income and ethnicity categories across clusters.
 
 
 
