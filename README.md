@@ -75,8 +75,6 @@ Passenger experience is examined through the lens of scheduled headways, distrib
 
 At the system level, lateness is characterized by full delay distributions, route-level late-arrival rates, and identification of the worst-performing routes and stops. The report does not compress these patterns into a single global figure such as “average delay across all routes,” preferring instead to show how delays vary across space and demographics. Likewise, while particular bus lines (including important routes such as 22, 29, 15, 45, 28, 44, and 42) may appear among the worst performers in our visualizations, they are treated within the broader set of routes rather than receiving individual operational profiles or dedicated average-delay summaries. Producing such targeted statistics is feasible with the cleaned datasets, but lies beyond the equity-centered scope of this mid-term analysis.
 
-# Mid-term Report
-
 ## Table of Contents
 1. [Preliminary Visualizations of Data](#1-preliminary-visualizations-of-data)  
 2. [Data Processing](#2-data-processing)  
