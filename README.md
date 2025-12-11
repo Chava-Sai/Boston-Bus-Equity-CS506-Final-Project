@@ -112,7 +112,72 @@ The project uses the following datasets:
   `B03002_012E`: Hispanic or Latino.
 
 ---
-## 2. Visualizations of Data
+
+## 2. Data Processing
+
+
+### **I. Data Cleaning and Type Conversion**
+Demographic columns in ACS and tracts DataFrames were converted to numeric using coercion to handle string headers and invalid values, replacing them with NaN. Unnecessary join indices were dropped to avoid conflicts. Diagnostics confirmed 1621 unique `GEOID`s, varying population distributions, and no duplicates, ensuring clean numeric data for analysis.
+
+### **II. Spatial Operations and Joins**
+Stops were reprojected to match tracts' `CRS (EPSG:4269)`, then spatially joined (inner, "within") to filter Boston stops. Race data was merged onto tracts via `GEOID`, with tracts reprojected to `EPSG:4326`. A final left spatial join assigned demographics to stops, creating an enriched stops_with_tract DataFrame.
+
+### **III. Data Integration and Aggregation**
+Stop times were merged with enriched stops on stop_id, then with trips on trip_id to add routes. Data was grouped by route_id to compute demographic means, with percentages calculated by dividing racial means by total population. 
+
+
+### **IV. Route ID Normalization**
+
+Routes appeared in inconsistent formats across datasets (e.g., `"01"`, `"1"`, `"1-0-0"`, `"34E"`). All route IDs were standardized by converting to uppercase, stripping whitespace/underscores, and removing leading zeros for numeric-only IDs. A new `route_id_norm` column stored these cleaned identifiers while preserving raw values, ensuring consistent merging across datasets.
+
+### **V. Correction of Route Naming Errors**
+
+Formatting anomalies (e.g., `"746_"`) were corrected with simple replacement rules, followed by re-running normalization. Unique route sets were compared across datasets to identify:
+- Routes common to all sources  
+- Routes missing from one or more datasets  
+
+This confirmed sufficient overlap for effective integration.
+
+### **VI. Data Cleaning and Filtering**
+
+Invalid or empty survey route entries were removed. Only routes present simultaneously in ridership, arrival–departure, and survey datasets were kept. To prevent memory overload, each dataset was capped at 30M rows while still retaining all relevant information.
+
+### **VII. Efficient Slicing and Indexing**
+
+To avoid kernel crashes when filtering Arrow-backed dataframes, boolean masks were converted into NumPy index arrays. Three masks (`mask_arr`, `mask_rid`, `mask_svy`) extracted rows corresponding to valid intersecting routes. This stabilized processing and reduced dataset size significantly.
+
+### **VIII. Route-Level Feature Construction**
+
+Two datasets were used for route-level operational features:
+
+- **Ridership Data (`ridership_df`)**  
+- **Arrival–Departure Data (`arrival_departure_df`)**
+
+For each route, aggregated features were computed:
+
+- **Ridership metrics:**  
+  mean/median boardings, alightings, passenger load, total record count, directional balance  
+- **Service metrics:**  
+  mean/std headway, mean scheduled headway, mean earliness, number of unique stops, total observations, on-time performance rate (arrivals within ±60 seconds)
+
+These statistics were merged into a unified dataframe (`route_feat`), providing the analytical foundation for clustering and downstream modeling.
+
+### **IX. Final Output Generation**
+
+Cleaned data was saved in `data_cleaned_capped`:
+- Arrival–departure → **Parquet**  
+- Ridership → **CSV**  
+- Survey → **CSV**  
+
+Chunked writing (50k rows) ensured memory-safe exporting. All outputs now share standardized route IDs, with invalid and malformed entries removed.
+
+### **X. Key Outcomes**
+
+The pipeline harmonizes three disparate MBTA datasets into a consistent analytical foundation. Through standardized route IDs, corrected inconsistencies, efficient filtering, and route-level feature construction, the final data supports reliable clustering, operational analysis, and advanced modeling.
+
+---
+
+## 3. Visualizations of Data
 
 - ### Demography Analysis
 <br>
@@ -225,70 +290,6 @@ This heatmap compares lateness percentages across multiple years for the 20 rout
 <img width="700" height="300" alt="late rate percentage by route vs year (worst 20 routes overall)" src="https://github.com/user-attachments/assets/13cccbd7-9bd6-4fa7-ad54-be0c847176a6" />
 
 <br><br>
-
----
-
-## 3. Data Processing
-
-
-### **I. Data Cleaning and Type Conversion**
-Demographic columns in ACS and tracts DataFrames were converted to numeric using coercion to handle string headers and invalid values, replacing them with NaN. Unnecessary join indices were dropped to avoid conflicts. Diagnostics confirmed 1621 unique `GEOID`s, varying population distributions, and no duplicates, ensuring clean numeric data for analysis.
-
-### **II. Spatial Operations and Joins**
-Stops were reprojected to match tracts' `CRS (EPSG:4269)`, then spatially joined (inner, "within") to filter Boston stops. Race data was merged onto tracts via `GEOID`, with tracts reprojected to `EPSG:4326`. A final left spatial join assigned demographics to stops, creating an enriched stops_with_tract DataFrame.
-
-### **III. Data Integration and Aggregation**
-Stop times were merged with enriched stops on stop_id, then with trips on trip_id to add routes. Data was grouped by route_id to compute demographic means, with percentages calculated by dividing racial means by total population. 
-
-
-### **IV. Route ID Normalization**
-
-Routes appeared in inconsistent formats across datasets (e.g., `"01"`, `"1"`, `"1-0-0"`, `"34E"`). All route IDs were standardized by converting to uppercase, stripping whitespace/underscores, and removing leading zeros for numeric-only IDs. A new `route_id_norm` column stored these cleaned identifiers while preserving raw values, ensuring consistent merging across datasets.
-
-### **V. Correction of Route Naming Errors**
-
-Formatting anomalies (e.g., `"746_"`) were corrected with simple replacement rules, followed by re-running normalization. Unique route sets were compared across datasets to identify:
-- Routes common to all sources  
-- Routes missing from one or more datasets  
-
-This confirmed sufficient overlap for effective integration.
-
-### **VI. Data Cleaning and Filtering**
-
-Invalid or empty survey route entries were removed. Only routes present simultaneously in ridership, arrival–departure, and survey datasets were kept. To prevent memory overload, each dataset was capped at 30M rows while still retaining all relevant information.
-
-### **VII. Efficient Slicing and Indexing**
-
-To avoid kernel crashes when filtering Arrow-backed dataframes, boolean masks were converted into NumPy index arrays. Three masks (`mask_arr`, `mask_rid`, `mask_svy`) extracted rows corresponding to valid intersecting routes. This stabilized processing and reduced dataset size significantly.
-
-### **VIII. Route-Level Feature Construction**
-
-Two datasets were used for route-level operational features:
-
-- **Ridership Data (`ridership_df`)**  
-- **Arrival–Departure Data (`arrival_departure_df`)**
-
-For each route, aggregated features were computed:
-
-- **Ridership metrics:**  
-  mean/median boardings, alightings, passenger load, total record count, directional balance  
-- **Service metrics:**  
-  mean/std headway, mean scheduled headway, mean earliness, number of unique stops, total observations, on-time performance rate (arrivals within ±60 seconds)
-
-These statistics were merged into a unified dataframe (`route_feat`), providing the analytical foundation for clustering and downstream modeling.
-
-### **IX. Final Output Generation**
-
-Cleaned data was saved in `data_cleaned_capped`:
-- Arrival–departure → **Parquet**  
-- Ridership → **CSV**  
-- Survey → **CSV**  
-
-Chunked writing (50k rows) ensured memory-safe exporting. All outputs now share standardized route IDs, with invalid and malformed entries removed.
-
-### **X. Key Outcomes**
-
-The pipeline harmonizes three disparate MBTA datasets into a consistent analytical foundation. Through standardized route IDs, corrected inconsistencies, efficient filtering, and route-level feature construction, the final data supports reliable clustering, operational analysis, and advanced modeling.
 
 ---
 
