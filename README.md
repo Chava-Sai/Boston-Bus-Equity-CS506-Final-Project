@@ -64,8 +64,8 @@ The final project structure should look something like this:
 </pre>
 
 
-### . Run the Analysis Notebooks
-All clustering analysis is conducted within Jupyter Notebooks located in the `clustering/` directory.
+### d. Run the Analysis Notebooks
+All analysis and modeling is conducted within Jupyter Notebooks located in the `notebooks/` directory.
 
 # Final Report
 
