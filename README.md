@@ -346,7 +346,7 @@ Using `shap.TreeExplainer`, we compute SHAP values to quantify each feature’s 
 4. **pct_asian**, **pct_minority_route**, **pct_black** — demographic exposure shows measurable effect  
 5. **scheduled_hour & direction_outbound** — temporal and directional factors influence delay patterns
 
-<img width="781" height="705" alt="Screenshot 2025-12-10 at 9 39 49 PM" src="https://github.com/user-attachments/assets/212dfcc8-f0a4-4fcf-b15b-775977e248a8" />
+<img width="400" height="350" alt="Screenshot 2025-12-10 at 9 39 49 PM" src="https://github.com/user-attachments/assets/212dfcc8-f0a4-4fcf-b15b-775977e248a8" />
 
 
 **Summary:** Operational structure explains the majority of lateness, but demographic features still appear as influential, motivating deeper fairness evaluation.
@@ -361,7 +361,7 @@ The SHAP beeswarm provides directional insight:
 - **Demographic variables** show mixed positive/negative contributions, indicating **context-dependent interactions** rather than uniform effects.  
 - Certain clusters show that increases in pct_asian, pct_black, or pct_minority_route can lead to higher predicted lateness in specific contexts.
 
-<img width="685" height="655" alt="Screenshot 2025-12-10 at 9 40 06 PM" src="https://github.com/user-attachments/assets/01ca53e0-c839-4db4-b136-4ec1397bdfcd" />
+<img width="400" height="270" alt="Screenshot 2025-12-10 at 9 40 06 PM" src="https://github.com/user-attachments/assets/01ca53e0-c839-4db4-b136-4ec1397bdfcd" />
 
 
 These findings highlight complex interaction effects, not direct linear bias.
@@ -379,7 +379,7 @@ To test whether demographic values unfairly influence predictions, we vary each 
 - **pct_hispanic:** modest rise at low values, then flattening
 
 
-<img width="616" height="437" alt="pct_min" src="https://github.com/user-attachments/assets/2f80ca08-10b2-4ded-b4c7-86a222012bc4" />
+<img width="400" height="270" alt="pct_min" src="https://github.com/user-attachments/assets/2f80ca08-10b2-4ded-b4c7-86a222012bc4" />
 
 
 <!-- <img width="615" height="442" alt="pct_hispanic" src="https://github.com/user-attachments/assets/65096d76-ebc7-44b1-833b-99bb4bbb45e5" />
