@@ -330,9 +330,9 @@ Model performance:
 - **Test R²:** ~0.48  
 
 The model explains about half of observed lateness variance, which is reasonable for transportation systems with high stochastic noise.
-<img width="518" height="538" alt="Screenshot 2025-12-10 at 9 39 16 PM" src="https://github.com/user-attachments/assets/66cd8cb1-a595-4117-b79a-150f2588a9d6" />
+<img width="400" height="400" alt="Screenshot 2025-12-10 at 9 39 16 PM" src="https://github.com/user-attachments/assets/66cd8cb1-a595-4117-b79a-150f2588a9d6" />
 
-<img width="528" height="468" alt="Screenshot 2025-12-10 at 9 39 27 PM" src="https://github.com/user-attachments/assets/314d376a-d3b8-412a-9f32-6933b1d5062c" />
+<img width="400" height="400" alt="Screenshot 2025-12-10 at 9 39 27 PM" src="https://github.com/user-attachments/assets/314d376a-d3b8-412a-9f32-6933b1d5062c" />
 
 #### 2. SHAP Global Feature Importance
 
@@ -379,7 +379,7 @@ To test whether demographic values unfairly influence predictions, we vary each 
 - **pct_hispanic:** modest rise at low values, then flattening
 
 
-<img width="400" height="270" alt="pct_min" src="https://github.com/user-attachments/assets/2f80ca08-10b2-4ded-b4c7-86a222012bc4" />
+<img width="450" height="290" alt="pct_min" src="https://github.com/user-attachments/assets/2f80ca08-10b2-4ded-b4c7-86a222012bc4" />
 
 
 <!-- <img width="615" height="442" alt="pct_hispanic" src="https://github.com/user-attachments/assets/65096d76-ebc7-44b1-833b-99bb4bbb45e5" />
