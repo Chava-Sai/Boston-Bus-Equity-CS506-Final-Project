@@ -313,7 +313,6 @@ This ensured that variables with different scales (e.g., “headway_mean” in m
 
 This module develops an interpretable ML pipeline to estimate **bus arrival lateness** using operational, temporal, and demographic predictors. We pair an XGBoost model with SHAP explainability tools to uncover feature contributions and evaluate potential fairness concerns.
 
----
 
 #### 1. Model Overview
 
@@ -332,7 +331,6 @@ Model performance:
 
 The model explains about half of observed lateness variance, which is reasonable for transportation systems with high stochastic noise.
 
----
 
 #### 2. SHAP Global Feature Importance
 
@@ -348,7 +346,6 @@ Using `shap.TreeExplainer`, we compute SHAP values to quantify each feature’s 
 
 **Summary:** Operational structure explains the majority of lateness, but demographic features still appear as influential, motivating deeper fairness evaluation.
 
----
 
 #### 3. SHAP Beeswarm Interpretation
 
@@ -361,7 +358,6 @@ The SHAP beeswarm provides directional insight:
 
 These findings highlight complex interaction effects, not direct linear bias.
 
----
 
 #### 4. Counterfactual Fairness Analysis
 
@@ -383,7 +379,6 @@ Demographic changes do shift predictions, but:
 
 These results support further fairness investigation but do not indicate strong, uniform demographic bias.
 
----
 
 ## 5. Final Results
 
