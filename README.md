@@ -84,7 +84,7 @@ At the system level, lateness is characterized by full delay distributions, rout
 4. [Final Results](#4-preliminary-results)
 
 ---
-## 2. Datasets Used
+## 1. Datasets Used
 
 The project uses the following datasets: 
 
@@ -113,8 +113,6 @@ The project uses the following datasets:
 
 ---
 ## 2. Visualizations of Data
-
-*(new stuff begins here)*
 
 - ### Demography Analysis
 <br>
