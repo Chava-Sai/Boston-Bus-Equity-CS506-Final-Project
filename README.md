@@ -76,13 +76,42 @@ Passenger experience is examined through the lens of scheduled headways, distrib
 At the system level, lateness is characterized by full delay distributions, route-level late-arrival rates, and identification of the worst-performing routes and stops. The report does not compress these patterns into a single global figure such as “average delay across all routes,” preferring instead to show how delays vary across space and demographics. Likewise, while particular bus lines (including important routes such as 22, 29, 15, 45, 28, 44, and 42) may appear among the worst performers in our visualizations, they are treated within the broader set of routes rather than receiving individual operational profiles or dedicated average-delay summaries. Producing such targeted statistics is feasible with the cleaned datasets, but lies beyond the equity-centered scope of this mid-term analysis.
 
 ## Table of Contents
-1. [Preliminary Visualizations of Data](#1-preliminary-visualizations-of-data)  
-2. [Data Processing](#2-data-processing)  
+1. [Datasets Used](#1-datasets) 
+2. [Visualizations of Data](#2-visualizations-of-data)  
+1. [Data Preprocessing](#1-datasets) 
 3. [Data Modeling Methods](#3-data-modeling-methods)  
 4. [Final Results](#4-preliminary-results)
 
 ---
-## 1. Preliminary Visualizations of Data
+## 2. Datasets Used
+
+The project uses the following datasets: 
+
+**1. MBTA GTFS Data:**
+  - Files: `stops.txt`, `stop_times.txt`, `trips.txt`.
+  - Source: [MBTA GTFS Feed](https://www.mbta.com/developers/gtfs) (download the latest static GTFS zip and extract relevant files).
+**2. MBTA Data**
+  - Files: Ridership data and Arrival–Departure time data
+  - Description: Ridership data contains stop-level boarding, alighting, and load observations across several years and seasons from 2016 to 2024. While Arrival–Departure time data stored detailed service-level information such as headways, scheduled times, and earliness or lateness of bus arrivals for each route and direction.
+  - Source:
+
+**2. Census Tract Shapefiles:**
+  - File: `tl_2024_25_tract.shp` (and associated files like `.shx`, `.dbf`).
+  - Source: [U.S. Census Bureau TIGER/Line Shapefiles](https://www2.census.gov/geo/tiger/TIGER2024/TRACT/)(select Massachusetts tracts for 2024).
+  - Filtered to Suffolk County (Boston, COUNTYFP = "025").
+
+**3. ACS Race Demographics (Table B03002):**
+  - File: Data.csv.
+  - Source: [U.S. Census Bureau American Community Survey (ACS) 5-Year Estimates](https://data.census.gov/table/ACSDT1Y2024.B03002?q=B03002:+Hispanic+or+Latino+Origin+by+Race) (download for Massachusetts census tracts; select variables for total population and racial groups).
+  - Variables used:
+  `B03002_001E`: Total population.
+  `B03002_003E`: White alone (not Hispanic).
+  `B03002_004E`: Black alone (not Hispanic).
+  `B03002_006E`: Asian alone (not Hispanic).
+  `B03002_012E`: Hispanic or Latino.
+
+---
+## 2. Visualizations of Data
 
 *(new stuff begins here)*
 
@@ -200,118 +229,74 @@ This heatmap compares lateness percentages across multiple years for the 20 rout
 
 ---
 
-## **2. Data Processing**
+## 3. Data Processing
 
-### **I. Data Loading**
-*(new stuff begins here)*
 
-The project uses the following datasets: 
-
-**1. MBTA GTFS Data:**
-  - Files: `stops.txt`, `stop_times.txt`, `trips.txt`.
-  - Source: [MBTA GTFS Feed](https://www.mbta.com/developers/gtfs) (download the latest static GTFS zip and extract relevant files).
-**2. MBTA Data**
-  - Files: Ridership data and Arrival–Departure time data
-  - Description: Ridership data contains stop-level boarding, alighting, and load observations across several years and seasons from 2016 to 2024. While Arrival–Departure time data stored detailed service-level information such as headways, scheduled times, and earliness or lateness of bus arrivals for each route and direction.
-  - Source:
-
-**2. Census Tract Shapefiles:**
-  - File: `tl_2024_25_tract.shp` (and associated files like `.shx`, `.dbf`).
-  - Source: [U.S. Census Bureau TIGER/Line Shapefiles](https://www2.census.gov/geo/tiger/TIGER2024/TRACT/)(select Massachusetts tracts for 2024).
-  - Filtered to Suffolk County (Boston, COUNTYFP = "025").
-
-**3. ACS Race Demographics (Table B03002):**
-  - File: Data.csv.
-  - Source: [U.S. Census Bureau American Community Survey (ACS) 5-Year Estimates](https://data.census.gov/table/ACSDT1Y2024.B03002?q=B03002:+Hispanic+or+Latino+Origin+by+Race) (download for Massachusetts census tracts; select variables for total population and racial groups).
-  - Variables used:
-  `B03002_001E`: Total population.
-  `B03002_003E`: White alone (not Hispanic).
-  `B03002_004E`: Black alone (not Hispanic).
-  `B03002_006E`: Asian alone (not Hispanic).
-  `B03002_012E`: Hispanic or Latino.
-
-### **II. Data Cleaning and Type Conversion**
+### **I. Data Cleaning and Type Conversion**
 Demographic columns in ACS and tracts DataFrames were converted to numeric using coercion to handle string headers and invalid values, replacing them with NaN. Unnecessary join indices were dropped to avoid conflicts. Diagnostics confirmed 1621 unique `GEOID`s, varying population distributions, and no duplicates, ensuring clean numeric data for analysis.
 
-### **III. Spatial Operations and Joins**
+### **II. Spatial Operations and Joins**
 Stops were reprojected to match tracts' `CRS (EPSG:4269)`, then spatially joined (inner, "within") to filter Boston stops. Race data was merged onto tracts via `GEOID`, with tracts reprojected to `EPSG:4326`. A final left spatial join assigned demographics to stops, creating an enriched stops_with_tract DataFrame.
 
-### **IV. Data Integration and Aggregation**
+### **III. Data Integration and Aggregation**
 Stop times were merged with enriched stops on stop_id, then with trips on trip_id to add routes. Data was grouped by route_id to compute demographic means, with percentages calculated by dividing racial means by total population. 
 
-*(new stuff ends here)*
 
-### **II. Route ID Normalization**
+### **IV. Route ID Normalization**
 
-Each dataset represented MBTA routes in slightly different ways — for instance, `"01"`, `"1"`, `"1-0-0"`, and `"34E"` could all appear as route identifiers. A custom normalization process was implemented to make them comparable across datasets. All route IDs were converted to uppercase strings, extra whitespace and underscores were stripped, and leading zeros were removed for numeric-only IDs. This ensured that all datasets referred to each route consistently (e.g., `"01"` and `"1"` were treated as the same route).  
+Routes appeared in inconsistent formats across datasets (e.g., `"01"`, `"1"`, `"1-0-0"`, `"34E"`). All route IDs were standardized by converting to uppercase, stripping whitespace/underscores, and removing leading zeros for numeric-only IDs. A new `route_id_norm` column stored these cleaned identifiers while preserving raw values, ensuring consistent merging across datasets.
 
-New normalized columns (such as `route_id_norm`) were created to store these standardized identifiers while keeping the raw data intact. This step was critical for accurate merging and comparison later in the pipeline.
+### **V. Correction of Route Naming Errors**
 
+Formatting anomalies (e.g., `"746_"`) were corrected with simple replacement rules, followed by re-running normalization. Unique route sets were compared across datasets to identify:
+- Routes common to all sources  
+- Routes missing from one or more datasets  
 
+This confirmed sufficient overlap for effective integration.
 
-### **III. Correction of Route Naming Errors**
+### **VI. Data Cleaning and Filtering**
 
-Some route entries included inconsistencies such as suffix underscores (e.g., `"746_"`) or formatting anomalies. These were manually corrected using simple replacement rules. The normalization process was re-run afterward to ensure the corrections propagated consistently across all datasets.  
+Invalid or empty survey route entries were removed. Only routes present simultaneously in ridership, arrival–departure, and survey datasets were kept. To prevent memory overload, each dataset was capped at 30M rows while still retaining all relevant information.
 
-Unique route sets were then extracted from each dataset, and the intersections and differences were computed to identify:  
-- Routes that appeared in all datasets, and  
-- Routes that were missing from one or more datasets.
+### **VII. Efficient Slicing and Indexing**
 
-This comparison provided an early check on coverage and revealed a manageable overlap suitable for merging.
+To avoid kernel crashes when filtering Arrow-backed dataframes, boolean masks were converted into NumPy index arrays. Three masks (`mask_arr`, `mask_rid`, `mask_svy`) extracted rows corresponding to valid intersecting routes. This stabilized processing and reduced dataset size significantly.
 
+### **VIII. Route-Level Feature Construction**
 
-### **V. Data Cleaning and Filtering**
+Two datasets were used for route-level operational features:
 
-Invalid or empty route entries were removed from the survey dataframe to maintain data integrity. Only rows containing at least one valid route ID were retained. Next, the intersection of route identifiers across all three datasets was calculated, leaving only the subset of routes that were present in the ridership, arrival–departure, and survey data simultaneously. This filtering step eliminated inconsistencies and ensured that subsequent analysis compared truly common routes.
+- **Ridership Data (`ridership_df`)**  
+- **Arrival–Departure Data (`arrival_departure_df`)**
 
-The datasets were capped at a maximum of 30 million records each to prevent excessive memory usage. This cap was sufficient to capture all relevant data while ensuring smooth processing.
+For each route, aggregated features were computed:
 
+- **Ridership metrics:**  
+  mean/median boardings, alightings, passenger load, total record count, directional balance  
+- **Service metrics:**  
+  mean/std headway, mean scheduled headway, mean earliness, number of unique stops, total observations, on-time performance rate (arrivals within ±60 seconds)
 
+These statistics were merged into a unified dataframe (`route_feat`), providing the analytical foundation for clustering and downstream modeling.
 
-### **VI. Efficient Slicing and Indexing**
+### **IX. Final Output Generation**
 
-Since the datasets were large and Arrow-backed dataframes can trigger kernel crashes during boolean indexing, the filtering operations were optimized using NumPy-based indexing. Instead of traditional pandas filtering, boolean masks were converted into NumPy arrays of row indices, which were then used to slice the data directly. This approach improved stability and performance on large data volumes.  
+Cleaned data was saved in `data_cleaned_capped`:
+- Arrival–departure → **Parquet**  
+- Ridership → **CSV**  
+- Survey → **CSV**  
 
-Three masks were created:
-- One for arrival–departure records (`mask_arr`)  
-- One for ridership records (`mask_rid`)  
-- One for survey entries (`mask_svy`)  
+Chunked writing (50k rows) ensured memory-safe exporting. All outputs now share standardized route IDs, with invalid and malformed entries removed.
 
-These masks identified rows associated with route IDs present in the intersection of all datasets. Using this approach, only relevant rows were retained, significantly reducing the size of the working data.
+### **X. Key Outcomes**
 
-
-
-### **VII. Final Output Generation and Cleaned Data Summary**
-
-After cleaning and aligning all datasets, the final step was to store them in a structured, analysis-ready format within a new directory named `data_cleaned_capped`.  
-
-- **Arrival–departure data** was saved as a **Parquet file** to preserve data types and support large-scale I/O.  
-- **Ridership** and **survey data** were saved as **CSV files** for easy inspection and compatibility with other tools.  
-
-A **chunked writing approach** (50,000 rows per batch) was used to prevent memory overload during saving.  
-
-All three datasets now share a **standardized route ID system**, ensuring full compatibility for integration. Invalid, duplicate, and malformed routes were removed, leaving only valid overlapping routes.  
-
-**Final Outputs:**
-- `arrival_departure.parquet` — stop-level operational metrics (headway, earliness).  
-- `ridership.csv` — aggregated route-level boardings, alightings, and load data.  
-- `survey.csv` — demographic and behavioral insights linked to valid routes.
-
-
-
-### **VIII. Key Outcomes of Data Processing**
-
-This data cleaning pipeline successfully integrated three disparate MBTA data sources into a consistent and scalable analytical base. The processed data now supports detailed route-level exploration of operational efficiency and rider demographics. It also establishes a reliable framework for advanced modeling tasks such as clustering, regression, or predictive analytics.  
-
-By standardizing route identifiers, correcting inconsistencies, expanding multi-route survey entries, and efficiently filtering records, the pipeline ensures that all subsequent analyses are performed on harmonized, high-quality data.
+The pipeline harmonizes three disparate MBTA datasets into a consistent analytical foundation. Through standardized route IDs, corrected inconsistencies, efficient filtering, and route-level feature construction, the final data supports reliable clustering, operational analysis, and advanced modeling.
 
 ---
 
-## 3. Data Modeling Methods
+## 4. Data Modeling Methods
 
 Our goal was to explore whether operational and ridership characteristics of MBTA bus routes exhibit natural groupings and, subsequently, whether those groups correlate with demographic or socioeconomic patterns derived from the MBTA passenger survey data.
 
-*(new stuff begins here)*
 ### I. Data Analysis
 
 With all datasets merged, the notebook applies several modeling and analytical approaches to examine the relationship between transit performance and neighborhood demographics. The first step involves characterizing each route based on the demographic composition of the stops it serves. This is done by averaging the demographic attributes of the tracts linked to each stop.
@@ -320,35 +305,90 @@ Next, the lateness metrics are connected to these demographic profiles to identi
 
 Visual models, including route-level comparisons, scatterplots, and mapped performance layers, are used to highlight these patterns. While the notebook does not use predictive machine learning models, it applies structured exploratory and statistical approaches to reveal relationships between service reliability and demographic factors.
 
-*(new stuff ends here)*
 
-
-### II. Feature Construction
-Three datasets were used:
-
-- **Ridership Data (`ridership_df`)**  
-- **Arrival–Departure Data (`arrival_departure_df`) **  
-
-From the ridership and arrival–departure datasets, we constructed route-level operational feature vectors.  
-For each route, the following aggregated statistics were computed:
-
-- **Ridership metrics:** mean and median boardings, alightings, and passenger load, as well as total record count and directional balance.  
-- **Service metrics:** mean and standard deviation of headway, mean scheduled headway, mean earliness, number of unique stops, total observations, and a derived on-time performance rate (fraction of arrivals within ±60 seconds of schedule).
-
-These features were merged into a single dataframe (`route_feat`), forming the analytical basis for clustering.
-
-
-
-### III. Data Standardization
+### II. Data Standardization
 All numeric features were standardized using **z-score normalization** via `StandardScaler` from scikit-learn.  
 This ensured that variables with different scales (e.g., “headway_mean” in minutes vs. “boardings_mean” in passenger counts) contributed equally to the clustering process.
 
+### III. Lateness Prediction: XGBoost + SHAP Explainability
 
+This module develops an interpretable ML pipeline to estimate **bus arrival lateness** using operational, temporal, and demographic predictors. We pair an XGBoost model with SHAP explainability tools to uncover feature contributions and evaluate potential fairness concerns.
 
-## 4. Final Results
-*(new stuff begins here)*
+---
 
-### 4.1 Pre and Post-Pandemic Analysis
+#### 1. Model Overview
+
+We train an **XGBoost Regressor** on engineered features including:
+
+- **Operational:** scheduled_headway, time_point_order, route_length  
+- **Temporal:** scheduled_hour, peak/off-peak indicator  
+- **Geodemographic:** pct_white, pct_black, pct_asian, pct_hispanic, pct_minority_stop, pct_minority_route  
+- **Stop Characteristics:** point_type (Startpoint/Midpoint), direction_outbound  
+
+Model performance:
+
+- **Train RMSE:** ~0.43  
+- **Test RMSE:** ~1.12  
+- **Test R²:** ~0.48  
+
+The model explains about half of observed lateness variance, which is reasonable for transportation systems with high stochastic noise.
+
+---
+
+#### 2. SHAP Global Feature Importance
+
+Using `shap.TreeExplainer`, we compute SHAP values to quantify each feature’s average contribution.
+
+**Top predictors:**
+
+1. **time_point_order** — later stops tend to accumulate more delay  
+2. **scheduled_headway** — longer headways drive higher lateness volatility  
+3. **point_type_Midpoint** — mid-route timing behaves differently than endpoints  
+4. **pct_asian**, **pct_minority_route**, **pct_black** — demographic exposure shows measurable effect  
+5. **scheduled_hour & direction_outbound** — temporal and directional factors influence delay patterns  
+
+**Summary:** Operational structure explains the majority of lateness, but demographic features still appear as influential, motivating deeper fairness evaluation.
+
+---
+
+#### 3. SHAP Beeswarm Interpretation
+
+The SHAP beeswarm provides directional insight:
+
+- **High time_point_order** consistently increases lateness.  
+- **High scheduled_headway** shifts predictions upward.  
+- **Demographic variables** show mixed positive/negative contributions, indicating **context-dependent interactions** rather than uniform effects.  
+- Certain clusters show that increases in pct_asian, pct_black, or pct_minority_route can lead to higher predicted lateness in specific contexts.
+
+These findings highlight complex interaction effects, not direct linear bias.
+
+---
+
+#### 4. Counterfactual Fairness Analysis
+
+To test whether demographic values unfairly influence predictions, we vary each demographic feature from **0 → 1** while holding all other attributes constant.
+
+#### Key patterns:
+
+- **pct_minority_route:** slight upward trend, with a steep jump near 0.9–1.0  
+- **pct_white:** lateness decreases from 0 → ~0.2, then stabilizes  
+- **pct_black & pct_asian:** non-linear increases around mid-range values, with pct_asian showing the strongest effect  
+- **pct_hispanic:** modest rise at low values, then flattening  
+
+**Interpretation:**  
+Demographic changes do shift predictions, but:
+
+- Effects are **generally small** (< 0.5 minutes)  
+- Relationships are **non-monotonic**, suggesting complex learned structure  
+- Largest effects occur at **extreme demographic values**, not across typical ranges  
+
+These results support further fairness investigation but do not indicate strong, uniform demographic bias.
+
+---
+
+## 5. Final Results
+
+### 5.1 Pre and Post-Pandemic Analysis
 
 #### **Overarching question:** How did ridership change before and after the pandemic, across routes, and time periods?
 - **Did average ridership drop after COVID-19?**
@@ -387,7 +427,7 @@ Overall, the figure highlights significant variation in ridership recovery acros
 
 
 
-### 4.2 Bus Equity Analysis
+### 5.2 Bus Equity Analysis
 The final results of the analysis show clear and measurable disparities in MBTA lateness across different demographic areas of Boston. Routes that serve neighborhoods with higher proportions of non-white residents tend to exhibit higher average lateness, while routes operating primarily in predominantly white neighborhoods generally show lower delays. These patterns are consistent at both the stop and route levels.
 
 <table>
@@ -484,19 +524,18 @@ Below is the Top 10 late and early stops with minority groups aggregated
 
 Boston is predominantly White, so looking at raw lateness alone could underestimate the impact on minority communities. By computing the population-weighted percentage of underserved individuals, we can highlight disparities in transit service and identify which groups are disproportionately affected, providing a basis for equitable improvements. Directly comparing raw counts of late stops would bias the analysis toward the majority population. By converting to percentages, we measure the relative burden on each community.
 
-To assess which communities are disproportionately affected by transit delays, we define a lateness threshold of 8 minutes to identify stops that are considered underserved. For each stop exceeding this threshold, we calculate the number of individuals from each racial group affected, using population counts from census data. Summing these values across all stops and dividing by the total population of each group in Boston gives the percentage of the community that is underserved. This population-weighted approach accounts for differences in group sizes, highlights disparities between White and minority communities, and provides a basis for equitable transit planning.
+To assess which communities are disproportionately affected by transit delays, we define a lateness threshold (e.g., 5 minutes) to identify stops that are considered underserved. For each stop exceeding this threshold, we calculate the number of individuals from each racial group affected, using population counts from census data. Summing these values across all stops and dividing by the total population of each group in Boston gives the percentage of the community that is underserved. This population-weighted approach accounts for differences in group sizes, highlights disparities between White and minority communities, and provides a basis for equitable transit planning.
 
 <img width="700"  alt="{D2320C60-646A-4423-A978-5BF1433504B7}" src="https://github.com/user-attachments/assets/1db157e0-f20a-4116-8676-ef3a3f7e4fba" />
 
 
 
-
-
 Overall, the analysis demonstrates that lateness is unevenly distributed across the city and is more severe in minority communities. These findings highlight important equity concerns and suggest that demographic factors play a meaningful role in transit performance outcomes within Boston’s MBTA system.
 
-*(new stuff ends here)*
 
+### 5.3 Key Takeaways from Predictive Modeling
 
-
-
-
+- XGBoost captures structural lateness patterns effectively.  
+- SHAP provides transparent explanations of operational and demographic impacts.  
+- Counterfactual sweeps reveal **moderate but non-uniform** demographic influence.  
+- This interpretability pipeline strengthens both **model trust** and **equity assessment**, enabling responsible use of ML in transportation analytics.
