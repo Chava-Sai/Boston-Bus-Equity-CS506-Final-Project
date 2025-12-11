@@ -37,27 +37,32 @@ The cleaned dataset used for this analysis is hosted on Kaggle.
 * **Kaggle Dataset:** [Boston MBTA Bus Equity and Reliability Dataset](https://www.kaggle.com/datasets/manaswiyadamreddy/boston-mbta-bus-equity-and-reliability-dataset/data)
 
 ### c. Set Up the Project Directory
-1.  From the Kaggle link, download the files from the `data_cleaned_capped` directory.
-2.  In the root of this project repository, create a folder named `data_cleaned_capped`.
-3.  Place the downloaded data files (e.g., `arrival_departure.parquet`, `ridership.csv`, `survey.csv`) directly into this `data_cleaned_capped` folder.
+1.  From the Kaggle link, download all the data.
+2.  In the root of this project repository, create a folder named `data`.
+3.  Place the downloaded data files based on the structure shown below.
 
-The final project structure should look like this:
-
-<!-- Boston-Bus-Equity-CS506-Final-Project/
+The final project structure should look something like this:
+<pre>
+  ```
 ├── data/
+    ├── data_cleaned_capped/
+│       ├── arrival_departure.parquet
+│       ├── ridership.csv
+│       └── survey.csv
 │   ├── MBTA_GTFS/
-│   ├── MBTA_Bus_Parquet
+│   ├── MBTA_Bus_Parquet/
 │   ├── tl_2024_25_tract/
 │   └── B03002/
-├── data_cleaned_capped/
-│   ├── arrival_departure.parquet
-│   ├── ridership.csv
-│   └── survey.csv
-├── notebooks/clustering/
-│   ├── clustering.ipynb
-│   └── hierarchical_clustering.ipynb
-└── README.md -->
-<img width="603" height="208" alt="Screenshot 2025-10-27 at 5 10 39 PM" src="https://github.com/user-attachments/assets/5a663047-fac7-413b-ac74-597445d1f62a" />
+├── notebooks/
+│   ├── clustering/
+│   ├── analysis/
+│   └── data_preprocessing/
+├── libs/
+├── scripts/
+└── README.md 
+  ```
+</pre>
+
 
 ### . Run the Analysis Notebooks
 All clustering analysis is conducted within Jupyter Notebooks located in the `clustering/` directory.
