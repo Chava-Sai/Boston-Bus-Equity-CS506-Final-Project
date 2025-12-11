@@ -61,7 +61,8 @@ The final project structure should look like this:
 
 ### . Run the Analysis Notebooks
 All clustering analysis is conducted within Jupyter Notebooks located in the `clustering/` directory.
-# Mid-term Report
+
+# Final Report
 
 ## Project Scope and Operational Metrics
 
