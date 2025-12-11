@@ -39,7 +39,7 @@ The cleaned dataset used for this analysis is hosted on Kaggle.
 ### c. Set Up the Project Directory
 1.  From the Kaggle link, download all the data.
 2.  In the root of this project repository, create a folder named `data`.
-3.  Place the downloaded data files based on the structure shown below.
+3.  Extract the folders and place the downloaded data files based on the structure shown below.
 
 The final project structure should look something like this:
 <pre>
