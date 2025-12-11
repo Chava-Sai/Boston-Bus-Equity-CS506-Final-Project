@@ -1,5 +1,4 @@
 
-````markdown
 # Boston-Bus-Equity-CS506-Final-Project
 
 [![BU Spark!](https://img.shields.io/badge/BU%20Spark!-Project-red.svg)]()
