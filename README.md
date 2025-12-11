@@ -49,6 +49,7 @@ The final project structure should look something like this:
 │       ├── arrival_departure.parquet
 │       ├── ridership.csv
 │       └── survey.csv
+|   ├── arr_dep_demo.csv
 │   ├── MBTA_GTFS/
 │   ├── MBTA_Bus_Parquet/
 │   ├── tl_2024_25_tract/
