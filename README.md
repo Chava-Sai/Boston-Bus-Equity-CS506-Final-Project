@@ -78,10 +78,10 @@ At the system level, lateness is characterized by full delay distributions, rout
 
 ## Table of Contents
 1. [Datasets Used](#1-datasets)
-2. [Data Preprocessing](#1-datasets) 
-3. [Visualizations of Data](#2-visualizations-of-data)  
-4. [Data Modeling Methods](#3-data-modeling-methods)  
-5. [Final Results](#4-preliminary-results)
+2. [Data Preprocessing](#2-data-preprocessing) 
+3. [Visualizations of Data](#3-visualizations-of-data)  
+4. [Data Modeling Methods](#4-data-modeling-methods)  
+5. [Final Results](#5-preliminary-results)
 
 ---
 ## 1. Datasets Used
