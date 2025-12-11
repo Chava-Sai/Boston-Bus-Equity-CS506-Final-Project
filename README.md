@@ -330,7 +330,9 @@ Model performance:
 - **Test R²:** ~0.48  
 
 The model explains about half of observed lateness variance, which is reasonable for transportation systems with high stochastic noise.
+<img width="518" height="538" alt="Screenshot 2025-12-10 at 9 39 16 PM" src="https://github.com/user-attachments/assets/66cd8cb1-a595-4117-b79a-150f2588a9d6" />
 
+<img width="528" height="468" alt="Screenshot 2025-12-10 at 9 39 27 PM" src="https://github.com/user-attachments/assets/314d376a-d3b8-412a-9f32-6933b1d5062c" />
 
 #### 2. SHAP Global Feature Importance
 
@@ -342,7 +344,10 @@ Using `shap.TreeExplainer`, we compute SHAP values to quantify each feature’s 
 2. **scheduled_headway** — longer headways drive higher lateness volatility  
 3. **point_type_Midpoint** — mid-route timing behaves differently than endpoints  
 4. **pct_asian**, **pct_minority_route**, **pct_black** — demographic exposure shows measurable effect  
-5. **scheduled_hour & direction_outbound** — temporal and directional factors influence delay patterns  
+5. **scheduled_hour & direction_outbound** — temporal and directional factors influence delay patterns
+
+<img width="781" height="705" alt="Screenshot 2025-12-10 at 9 39 49 PM" src="https://github.com/user-attachments/assets/212dfcc8-f0a4-4fcf-b15b-775977e248a8" />
+
 
 **Summary:** Operational structure explains the majority of lateness, but demographic features still appear as influential, motivating deeper fairness evaluation.
 
@@ -356,6 +361,9 @@ The SHAP beeswarm provides directional insight:
 - **Demographic variables** show mixed positive/negative contributions, indicating **context-dependent interactions** rather than uniform effects.  
 - Certain clusters show that increases in pct_asian, pct_black, or pct_minority_route can lead to higher predicted lateness in specific contexts.
 
+<img width="685" height="655" alt="Screenshot 2025-12-10 at 9 40 06 PM" src="https://github.com/user-attachments/assets/01ca53e0-c839-4db4-b136-4ec1397bdfcd" />
+
+
 These findings highlight complex interaction effects, not direct linear bias.
 
 
@@ -368,7 +376,36 @@ To test whether demographic values unfairly influence predictions, we vary each 
 - **pct_minority_route:** slight upward trend, with a steep jump near 0.9–1.0  
 - **pct_white:** lateness decreases from 0 → ~0.2, then stabilizes  
 - **pct_black & pct_asian:** non-linear increases around mid-range values, with pct_asian showing the strongest effect  
-- **pct_hispanic:** modest rise at low values, then flattening  
+- **pct_hispanic:** modest rise at low values, then flattening
+
+
+<img width="616" height="437" alt="pct_min" src="https://github.com/user-attachments/assets/2f80ca08-10b2-4ded-b4c7-86a222012bc4" />
+
+
+<!-- <img width="615" height="442" alt="pct_hispanic" src="https://github.com/user-attachments/assets/65096d76-ebc7-44b1-833b-99bb4bbb45e5" />
+<img width="617" height="429" alt="pct_asian" src="https://github.com/user-attachments/assets/27614caa-8fcd-4131-8d88-d638d09147b8" />
+<img width="614" height="438" alt="pct_black" src="https://github.com/user-attachments/assets/31a93a9f-f95e-4e03-968f-9b1ad96df3bb" />
+<img width="619" height="439" alt="pct_white" src="https://github.com/user-attachments/assets/3b0456a1-a738-4699-a0cc-09a5e8e54163" /> -->
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="https://github.com/user-attachments/assets/65096d76-ebc7-44b1-833b-99bb4bbb45e5" alt="pct_hispanic" />
+    </td>
+    <td width="50%">
+      <img src="https://github.com/user-attachments/assets/27614caa-8fcd-4131-8d88-d638d09147b8" alt="pct_asian" />
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <img src="https://github.com/user-attachments/assets/31a93a9f-f95e-4e03-968f-9b1ad96df3bb" alt="pct_black" />
+    </td>
+    <td width="50%">
+      <img src="https://github.com/user-attachments/assets/3b0456a1-a738-4699-a0cc-09a5e8e54163" alt="pct_white" />
+    </td>
+  </tr>
+</table>
+
 
 **Interpretation:**  
 Demographic changes do shift predictions, but:
